@@ -9,7 +9,7 @@
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
-    <body class="font-serif antialiased font-bold">
+    <body class="font-serif antialiased font-normal">
         <div class="mx-auto screen-3xl md:flex">
             {{ $slot }}
         </div>

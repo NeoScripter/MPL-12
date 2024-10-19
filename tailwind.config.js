@@ -17,6 +17,8 @@ export default {
             },
             colors: {
                 'brand-orange': '#C3512F',
+                'black-800': '#222',
+                'black-700': '#333',
             },
             maxWidth: {
                 'screen-3xl': '1920px',
@@ -30,6 +32,10 @@ export default {
             },
             boxShadow: {
                 'white-large': '0 0 20px 40px rgba(255, 255, 255, 1)', // Custom large white shadow
+            },
+            gridTemplateColumns: {
+                'auto-fit-300': 'repeat(auto-fit, minmax(350px, 1fr))',
+                'auto-fit-240': 'repeat(auto-fit, minmax(240px, 1fr))',
             },
         },
     },
