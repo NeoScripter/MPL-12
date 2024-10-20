@@ -29,7 +29,7 @@
             @if (isset($courses))
                 @foreach ($courses as $course)
                     <div>
-                        <a href=""
+                        <a href="{{ route('dashboard.show', $course->id)}}"
                             class="relative block overflow-hidden after:inset-0 after:z-20 after:bg-white after:opacity-0 after:absolute after:hover:opacity-70 after:transition-opacity">
                             <img class="object-cover object-center w-full h-full"
                                 src="{{ Storage::url($course->image_path) }}" alt="">
@@ -46,7 +46,7 @@
                                 Белова, Юлия
                                 Зотова</p>
                             <h4 class="italic">Формат: {{ $course->format }}</h4>
-                            <div class="prose text-gray-400 max-w-none">
+                            <div class="space-y-1 prose text-gray-400 max-w-none">
                                 {!! $course->description !!}
                             </div>
                         </div>

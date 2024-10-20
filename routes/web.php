@@ -19,6 +19,7 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::get('/', [CourseController::class, 'showAll'])->name('index');
+Route::get('/course/{course}', [CourseController::class, 'show'])->name('dashboard.show');
 
 Route::get('/teachers', function () {
     return view('teachers');

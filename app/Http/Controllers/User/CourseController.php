@@ -26,6 +26,13 @@ class CourseController extends Controller
         return view('index', compact('courses', 'phones'));
     }
 
+    public function show(Course $course)
+    {
+        $course->load('schedules');
+        $phones = Phone::all();
+        return view('show-course', compact('course', 'phones'));
+    }
+
     public function destroy(Course $course)
     {
         if ($course->image_path) {
