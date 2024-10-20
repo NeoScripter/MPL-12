@@ -16,8 +16,7 @@
                     <p class="block mb-1 font-bold text-black font-sm text-md">{{ $course->title }}</p>
                 </div>
                 <div>
-                    <p class="block mb-1 text-gray-700 font-sm text-md">{{ \Carbon\Carbon::parse($course->start_date)
-        ->translatedFormat('d F Y') }}</p>
+                    <p class="block mb-1 text-gray-700 font-sm text-md">{{ $course->start_date }}</p>
                 </div>
                 <div>
                     <figure class="relative max-w-sm mb-1">
@@ -29,6 +28,7 @@
                 <div>
                     <p class="block font-bold text-black font-sm text-md">{!!  $course->description !!}</p>
                 </div>
+                <x-user.link href="{{ route('dashboard.edit', $course) }}">{{ __('Редактировать') }}</x-user.link>
             </div>
             @endforeach
 
@@ -37,6 +37,13 @@
             <p class="no-courses-message">Нет ни одного курса</p>
         @endif
 
+
     </div>
 
 </section>
+
+@if (session('status') === 'course-deleted')
+<p x-data="{ show: true }" x-show="show" x-transition
+    x-init="setTimeout(() => show = false, 2000)" class="text-sm text-gray-600">
+    {{ __('Курс удален.') }}</p>
+@endif

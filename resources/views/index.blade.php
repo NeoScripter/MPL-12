@@ -39,7 +39,7 @@
                             {{ $course->title }}</h3>
                         <div class="grid gap-1 py-3 border-t border-b border-gray-300">
                             <span
-                                class="font-normal text-gray-500 text-md">{{ \Carbon\Carbon::parse($course->start_date)->translatedFormat('d F Y') }}
+                                class="font-normal text-gray-500 text-md">{{ $course->start_date }}
                             </span>
                             <h4 class="italic">Ведущие:</h4>
                             <p class="italic text-brand-orange">Александр Мусихин, Алексей Андреев-Чадаев, Арман

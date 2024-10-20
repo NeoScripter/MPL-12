@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ScheduleController;
 use App\Http\Controllers\User\CourseController;
 use Illuminate\Support\Facades\Route;
 
@@ -28,7 +29,14 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
     Route::get('/dashboard', [CourseController::class, 'index'])->name('dashboard');
+    Route::put('/dashboard/{course}', [CourseController::class, 'update'])->name('dashboard.update');
+
+    Route::delete('/dashboard/{course}', [CourseController::class, 'destroy'])->name('dashboard.destroy');
+    Route::get('/dashboard/{course}', [CourseController::class, 'edit'])->name('dashboard.edit');
     Route::post('/course/create', [CourseController::class, 'store'])->name('course.create');
+
+    Route::post('/dashboard/{course}/schedules', [ScheduleController::class, 'store'])->name('schedules.store');
+    Route::delete('/schedules/{schedule}', [ScheduleController::class, 'destroy'])->name('schedules.destroy');
 });
 
 

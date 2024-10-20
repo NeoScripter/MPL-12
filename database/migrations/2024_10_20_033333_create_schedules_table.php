@@ -11,14 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('courses', function (Blueprint $table) {
+        Schema::create('schedules', function (Blueprint $table) {
             $table->id();
-            $table->string('image_path')->nullable();
-            $table->string('start_date');
-            $table->string('format');
-            $table->text('content');
-            $table->text('description');
-            $table->string('title');
+            $table->foreignId('course_id')->constrained()->onDelete('cascade');
+            $table->string('content');
             $table->timestamps();
         });
     }
@@ -28,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('courses');
+        Schema::dropIfExists('schedules');
     }
 };
