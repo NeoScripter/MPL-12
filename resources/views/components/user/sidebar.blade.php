@@ -29,15 +29,16 @@
     <div class="block px-4 py-2 font-normal text-white transition-opacity bg-brand-orange">Телефоны</div>
 
     <ul class="grid gap-3">
-        @for ($i = 0; $i < 5; $i++)
-        <li>
-            <a href="" class="hover:underline text-brand-orange text-md hover:text-gray-400">+7(925)441-74-12</a>
-            <a href="" class="hover:underline text-brand-orange text-md hover:text-gray-400">prog.curator@mospsylab.ru</a>
-            <p class="text-gray-400">Запись на мероприятия и расстановки
-                Куратор мероприятий для всех желающих, Анна
-                Будни с 10 до 21 (телефон и WhatsApp)Суббота и воскресенье только WhatsApp</p>
-        </li>
-        @endfor
 
+        @if (isset($phones))
+                @foreach ($phones as $phone)
+                    <li>
+                        <a href="" class="block hover:underline text-brand-orange text-md hover:text-gray-400">{{ $phone->number }}</a>
+                        <a href="" class="block hover:underline text-brand-orange text-md hover:text-gray-400">{{ $phone->email }}</a>
+                        <div class="text-gray-400">{!! $phone->text !!}</div>
+                    </li>
+                @endforeach
+
+            @endif
     </ul>
 </sidebar>

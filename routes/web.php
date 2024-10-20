@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\PhoneController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ScheduleController;
 use App\Http\Controllers\User\CourseController;
@@ -37,6 +38,15 @@ Route::middleware('auth')->group(function () {
 
     Route::post('/dashboard/{course}/schedules', [ScheduleController::class, 'store'])->name('schedules.store');
     Route::delete('/schedules/{schedule}', [ScheduleController::class, 'destroy'])->name('schedules.destroy');
+
+    Route::get('/general', [ProfileController::class, 'edit'])->name('general');
+
+    Route::get('/phones', [PhoneController::class, 'index'])->name('phones');
+    Route::get('/phones/{phone}', [PhoneController::class, 'edit'])->name('phones.edit');
+    Route::put('/phones/{phone}', [PhoneController::class, 'update'])->name('phones.update');
+    Route::delete('/phones/{phone}', [PhoneController::class, 'destroy'])->name('phones.destroy');
+    Route::post('/phones/create', [PhoneController::class, 'store'])->name('phones.create');
+
 });
 
 

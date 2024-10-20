@@ -21,6 +21,16 @@
                         Преподаватели
                     </x-nav-link>
                 </div>
+                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                    <x-nav-link :href="route('phones')" :active="request()->routeIs('phones')">
+                        Телефоны
+                    </x-nav-link>
+                </div>
+                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                    <x-nav-link :href="route('general')" :active="request()->routeIs('general')">
+                        Общее
+                    </x-nav-link>
+                </div>
             </div>
 
             <!-- Settings Dropdown -->

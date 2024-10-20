@@ -4,6 +4,7 @@ namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
 use App\Models\Course;
+use App\Models\Phone;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -12,16 +13,17 @@ class CourseController extends Controller
 
     public function index()
     {
-        $courses = Course::latest()->paginate(2);
+        $courses = Course::latest()->paginate(8);
 
         return view('dashboard', compact('courses'));
     }
 
     public function showAll()
     {
-        $courses = Course::latest()->paginate(2);
+        $courses = Course::latest()->paginate(8);
+        $phones = Phone::all();
 
-        return view('index', compact('courses'));
+        return view('index', compact('courses', 'phones'));
     }
 
     public function destroy(Course $course)

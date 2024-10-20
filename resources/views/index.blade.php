@@ -13,7 +13,7 @@
 
     </header>
 
-    <x-user.sidebar />
+    <x-user.sidebar :phones="$phones" />
 
     <div>
         <div class="relative bg-[url('/images/hero.jpg')] bg-cover bg-center bg-no-repeat min-h-96 w-full pt-24 px-16">
@@ -26,7 +26,6 @@
                 заявку</a>
         </div>
         <div class="grid w-10/12 gap-8 mx-auto mt-8 sm:grid-cols-auto-fit-240 xl:grid-cols-3 md:gap-12 md:mt-12 md:w-10/12">
-
             @if (isset($courses))
                 @foreach ($courses as $course)
                     <div>
@@ -62,6 +61,6 @@
             @endif
         </div>
 
-        <x-user.footer />
+        <x-user.footer :phones="$phones" />
     </div>
 </x-user-layout>
