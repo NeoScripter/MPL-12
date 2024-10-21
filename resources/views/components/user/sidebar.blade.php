@@ -12,7 +12,7 @@
         </ul>
     </nav>
 
-    <a href=""
+    <a href="mailto:admin@mospsylab.ru"
         class="flex items-center justify-center gap-3 p-2 border border-brand-orange text-brand-orange">Напишите нам
         <img class="h-full" src="{{ asset('images/email.svg') }}" alt="">
     </a>

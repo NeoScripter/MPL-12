@@ -51,6 +51,18 @@
         </div>
 
         <div>
+            <x-input-label class="mb-1" for="price" :value="__('Цена курса')" />
+            <x-text-area id="price" name="price" class="block w-full mt-1 wysiwyg-editor">{{ $course->price }}</x-text-area>
+            <x-input-error class="mt-2" :messages="$errors->get('price')" />
+        </div>
+
+        <div>
+            <x-input-label class="mb-1" for="reviews" :value="__('Отзывы курса')" />
+            <x-text-area id="reviews" name="reviews" class="block w-full mt-1 wysiwyg-editor">{{ $course->reviews }}</x-text-area>
+            <x-input-error class="mt-2" :messages="$errors->get('reviews')" />
+        </div>
+
+        <div>
             <p class="block mb-1 text-sm font-medium text-gray-700">Фото курса</p>
             <div>
                 <figure class="relative max-w-sm mb-1">

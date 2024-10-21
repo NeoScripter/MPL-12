@@ -22,6 +22,9 @@ class DatabaseSeeder extends Seeder
             CoursesTableSeeder::class,
             PhonesTableSeeder::class,
             TeachersTableSeeder::class,
+            UserSeeder::class,
+            TeachersArticleSeeder::class,
+            UserSeeder::class,
         ]);
     }
 }

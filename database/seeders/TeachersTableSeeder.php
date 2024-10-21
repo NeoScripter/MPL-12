@@ -40,8 +40,8 @@ class TeachersTableSeeder extends Seeder
         DB::table('teachers')->insert([
             [
                 'name' => 'Александр Мусихин',
-                'main_image_path' => 'images/teachers/teacher-1.png',
-                'secondary_image_path' => 'images/teachers/teacher-1-1.png',
+                'main_image_path' => 'images/teacher-1.png',
+                'secondary_image_path' => 'images/teacher-1-1.png',
                 'quote' => 'Я искренне считаю, что основная задача психотерапии – помочь человеку научиться любить себя безусловно. Это включает и бережное отношение к себе, и умение себя защищать, и умение себя организовать, и вовремя о себе позаботиться, и вовремя включить волю, и еще многое другое. Это как найти внутри себя бесконечный источник ресурсов, который не зависит от других людей, обстоятельств жизни и который навсегда останется с вами.',
                 'education' => $education,
                 'created_at' => now(),
@@ -49,7 +49,7 @@ class TeachersTableSeeder extends Seeder
             ],
             [
                 'name' => 'Марина Уланова',
-                'main_image_path' => 'images/teachers/teacher-2.png',
+                'main_image_path' => 'images/teacher-2.png',
                 'secondary_image_path' => null,
                 'quote' => 'Я люблю помогать людям реализовывать их мечты и желания, быть сопричастной к изменению и самореализации. Я телесно-ориентированный…',
                 'education' => $education,
@@ -59,15 +59,6 @@ class TeachersTableSeeder extends Seeder
             [
                 'name' => 'Мария Летучева',
                 'main_image_path' => null,
-                'secondary_image_path' => null,
-                'quote' => 'Я люблю помогать людям реализовывать их мечты и желания, быть сопричастной к изменению и самореализации. Я телесно-ориентированный…',
-                'education' => $education,
-                'created_at' => now(),
-                'updated_at' => now(),
-            ],
-            [
-                'name' => 'Марина Уланова',
-                'main_image_path' => 'images/teachers/teacher-2.png',
                 'secondary_image_path' => null,
                 'quote' => 'Психолог с гуманистическим мировоззрением и, надеюсь, с большим запасом здравомыслия, несмотря на всю трепетность своего ремесла. В своей работе использую методики поведенческой, телесной, арт-терапии, психодрамы,   системной семейной терапии. Словом, беру всё, что работает и помогает людям становиться более живыми и настоящими, получать удовольствие от своей работы, увлечений, в контакте с близкими людьми. Психолог-консультант, преподаватель,…',
                 'education' => $education,
@@ -103,7 +94,7 @@ class TeachersTableSeeder extends Seeder
             ],
             [
                 'name' => 'Ирина Андреева-Чадаева',
-                'main_image_path' => 'images/teachers/teacher-3.png',
+                'main_image_path' => 'images/teacher-3.png',
                 'secondary_image_path' => null,
                 'quote' => 'Эффективно и с любовью сказать жизни «Да».',
                 'education' => $education,
@@ -112,7 +103,7 @@ class TeachersTableSeeder extends Seeder
             ],
             [
                 'name' => 'Анастасия Бадаева',
-                'main_image_path' => 'images/teachers/teacher-4.png',
+                'main_image_path' => 'images/teacher-4.png',
                 'secondary_image_path' => null,
                 'quote' => 'С уважением и бережностью отношусь к уникальности и индивидуальности каждого человека, искренне верю в возможность изменений и разрешения любой ситуации, имею большой опыт эффективной работы с клиентами по самым разным темам.',
                 'education' => $education,
@@ -121,7 +112,7 @@ class TeachersTableSeeder extends Seeder
             ],
             [
                 'name' => 'Татьяна Князева',
-                'main_image_path' => 'images/teachers/teacher-5.png',
+                'main_image_path' => 'images/teacher-5.png',
                 'secondary_image_path' => null,
                 'quote' => 'Стать автором своей жизни возможно в любом возрасте! Если вы оказались в сложной жизненной…',
                 'education' => $education,

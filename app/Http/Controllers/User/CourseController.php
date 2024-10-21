@@ -57,6 +57,8 @@ class CourseController extends Controller
             'date' => 'required|string',
             'description' => 'nullable|string',
             'content' => 'nullable|string|max:10000',
+            'price' => 'nullable|string',
+            'reviews' => 'nullable|string',
             'image' => 'nullable|image|max:1024',
         ]);
 
@@ -71,6 +73,8 @@ class CourseController extends Controller
             'start_date' => $validated['date'],
             'description' => $validated['description'],
             'content' => $validated['content'],
+            'price' => $validated['price'],
+            'reviews' => $validated['reviews'],
             'image_path' => $imagePath,
         ]);
 
@@ -85,6 +89,8 @@ class CourseController extends Controller
             'date' => 'required|string',
             'description' => 'nullable|string',
             'content' => 'nullable|string|max:10000',
+            'price' => 'nullable|string',
+            'reviews' => 'nullable|string',
             'image' => 'nullable|image|max:1024',
         ]);
 
@@ -103,6 +109,8 @@ class CourseController extends Controller
             'start_date' => $validated['date'],
             'description' => $validated['description'],
             'content' => $validated['content'],
+            'price' => $validated['price'],
+            'reviews' => $validated['reviews'],
             'image_path' => $course->image_path ?? null,
         ]);
 

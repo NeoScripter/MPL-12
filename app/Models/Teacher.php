@@ -12,7 +12,12 @@ class Teacher extends Model
     protected $guarded = [];
 
     public function courses()
-{
-    return $this->belongsToMany(Course::class);
-}
+    {
+        return $this->belongsToMany(Course::class);
+    }
+
+    public function articles()
+    {
+        return $this->hasMany(Article::class);
+    }
 }

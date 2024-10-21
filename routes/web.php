@@ -1,9 +1,11 @@
 <?php
 
+use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\PhoneController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ScheduleController;
 use App\Http\Controllers\User\CourseController;
+use App\Http\Controllers\User\TeacherController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -21,23 +23,19 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [CourseController::class, 'showAll'])->name('index');
 Route::get('/course/{course}', [CourseController::class, 'show'])->name('dashboard.show');
 
-Route::get('/teachers', function () {
-    return view('teachers');
-})->middleware(['auth', 'verified'])->name('teachers');
-
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
-    Route::get('/dashboard', [CourseController::class, 'index'])->name('dashboard');
-    Route::put('/dashboard/{course}', [CourseController::class, 'update'])->name('dashboard.update');
+    Route::get('/admin', [CourseController::class, 'index'])->name('dashboard');
+    Route::put('/admin/{course}', [CourseController::class, 'update'])->name('dashboard.update');
 
-    Route::delete('/dashboard/{course}', [CourseController::class, 'destroy'])->name('dashboard.destroy');
-    Route::get('/dashboard/{course}', [CourseController::class, 'edit'])->name('dashboard.edit');
+    Route::delete('/admin/{course}', [CourseController::class, 'destroy'])->name('dashboard.destroy');
+    Route::get('/admin/{course}', [CourseController::class, 'edit'])->name('dashboard.edit');
     Route::post('/course/create', [CourseController::class, 'store'])->name('course.create');
 
-    Route::post('/dashboard/{course}/schedules', [ScheduleController::class, 'store'])->name('schedules.store');
+    Route::post('/admin/{course}/schedules', [ScheduleController::class, 'store'])->name('schedules.store');
     Route::delete('/schedules/{schedule}', [ScheduleController::class, 'destroy'])->name('schedules.destroy');
 
     Route::get('/general', [ProfileController::class, 'edit'])->name('general');
@@ -47,6 +45,16 @@ Route::middleware('auth')->group(function () {
     Route::put('/phones/{phone}', [PhoneController::class, 'update'])->name('phones.update');
     Route::delete('/phones/{phone}', [PhoneController::class, 'destroy'])->name('phones.destroy');
     Route::post('/phones/create', [PhoneController::class, 'store'])->name('phones.create');
+
+
+    Route::get('/teachers', [TeacherController::class, 'index'])->name('teachers');
+    Route::put('/teachers/{teacher}', [TeacherController::class, 'update'])->name('teachers.update');
+    Route::delete('/teachers/{teacher}', [TeacherController::class, 'destroy'])->name('teachers.destroy');
+    Route::get('/teachers/{teacher}', [TeacherController::class, 'edit'])->name('teachers.edit');
+    Route::post('/teachers/create', [TeacherController::class, 'store'])->name('teachers.create');
+
+    Route::post('/teachers/{teacher}/article', [ArticleController::class, 'store'])->name('article.store');
+    Route::delete('/articles/{article}', [ArticleController::class, 'destroy'])->name('article.destroy');
 
 });
 
