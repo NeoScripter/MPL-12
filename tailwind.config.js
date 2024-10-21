@@ -23,12 +23,18 @@ export default {
             maxWidth: {
                 'screen-3xl': '1920px',
             },
+            maxHeight: {
+                '130': '32.5rem',
+            },
             minHeight: {
                 '96': '24rem',
                 '100': '25rem',
             },
             width: {
                 ...generateWidths(97, 200),
+            },
+            height: {
+                '130': '32.5rem',
             },
             boxShadow: {
                 'white-large': '0 0 20px 40px rgba(255, 255, 255, 1)', // Custom large white shadow
@@ -37,6 +43,12 @@ export default {
                 'auto-fit-300': 'repeat(auto-fit, minmax(350px, 1fr))',
                 'auto-fit-240': 'repeat(auto-fit, minmax(240px, 1fr))',
             },
+            flexBasis: {
+                '1/4': '25%',
+                '1/2': '50%',
+                '3/4': '75%',
+                'full': '100%',
+              },
         },
     },
 

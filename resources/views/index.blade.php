@@ -3,9 +3,9 @@
     <header class="fixed z-30 w-full py-2 md:hidden">
 
         <div class="flex items-center justify-between w-4/5 mx-auto">
-            <div class="overflow-hidden w-36">
+            <a href="{{ route('index') }}" class="block overflow-hidden w-36">
                 <img src="{{ asset('images/logo.png') }}" alt="">
-            </div>
+            </a>
             <button class="w-12 overflow-hidden transition-opacity hover:opacity-90">
                 <img src="{{ asset('images/burger.svg') }}" alt="">
             </button>

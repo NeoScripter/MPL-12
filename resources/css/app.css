@@ -76,6 +76,10 @@
 }
 
 
-.double-text-shadow {
+.html-content h3 {
+    font-weight: bold;
+}
 
+.html-content p {
+    margin-bottom: 0.3em;
 }

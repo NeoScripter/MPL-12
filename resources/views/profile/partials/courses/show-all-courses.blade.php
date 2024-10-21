@@ -26,7 +26,7 @@
                     </figure>
                 </div>
                 <div>
-                    <p class="block font-bold text-black font-sm text-md">{!!  $course->description !!}</p>
+                    <p class="block font-normal text-black font-sm text-md">{!!  $course->description !!}</p>
                 </div>
                 <x-user.link href="{{ route('dashboard.edit', $course) }}">{{ __('Редактировать') }}</x-user.link>
             </div>

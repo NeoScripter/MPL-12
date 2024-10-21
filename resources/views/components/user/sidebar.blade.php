@@ -1,7 +1,7 @@
 <sidebar class="hidden px-8 place-content-start md:grid md:gap-6 md:w-72 shrink-0">
-    <div class="overflow-hidden">
+    <a href="{{ route('index') }}" class="block overflow-hidden">
         <img src="{{ asset('images/logo.png') }}" alt="">
-    </div>
+    </a>
 
     <nav class="text-black">
         <ul class="gap-4 text-xl leading-none text-right md:grid">
