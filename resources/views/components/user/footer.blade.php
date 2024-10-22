@@ -10,9 +10,9 @@
                 @if (isset($phones))
                     @foreach ($phones as $phone)
                         <li>
-                            <a href=""
+                            <a href="tel:{{ preg_replace('/\D/', '', $phone->number) }}"
                                 class="block hover:underline text-brand-orange text-md hover:text-gray-400">{{ $phone->number }}</a>
-                            <a href=""
+                            <a href="mailto:{{ e($phone->email) }}"
                                 class="block hover:underline text-brand-orange text-md hover:text-gray-400">{{ $phone->email }}</a>
                             <div class="text-white">{!! $phone->text !!}</div>
                         </li>

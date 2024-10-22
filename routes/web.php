@@ -6,6 +6,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ScheduleController;
 use App\Http\Controllers\User\CourseController;
 use App\Http\Controllers\User\TeacherController;
+use App\Models\Phone;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -22,6 +23,14 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [CourseController::class, 'showAll'])->name('index');
 Route::get('/course/{course}', [CourseController::class, 'show'])->name('dashboard.show');
+
+Route::get('/allteachers', [TeacherController::class, 'showAll'])->name('user.teachers');
+Route::get('/teacher/{teacher}', [TeacherController::class, 'show'])->name('teacher.show');
+
+Route::get('/dummy', function() {
+    $phones = Phone::all();
+    return view('dummy', compact('phones'));
+})->name('dummy');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

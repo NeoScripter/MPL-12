@@ -13,14 +13,14 @@ class CourseController extends Controller
 
     public function index()
     {
-        $courses = Course::latest()->paginate(8);
+        $courses = Course::latest()->paginate(9);
 
         return view('dashboard', compact('courses'));
     }
 
     public function showAll()
     {
-        $courses = Course::latest()->paginate(8);
+        $courses = Course::latest()->paginate(9);
         $phones = Phone::all();
 
         return view('index', compact('courses', 'phones'));

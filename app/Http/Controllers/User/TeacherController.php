@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
+use App\Models\Phone;
 use App\Models\Teacher;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -11,22 +12,24 @@ class TeacherController extends Controller
 {
     public function index()
     {
-        $teachers = Teacher::latest()->paginate(8);
+        $teachers = Teacher::latest()->paginate(9);
 
         return view('teachers', compact('teachers'));
     }
 
     public function showAll()
     {
-        $teachers = Teacher::latest()->paginate(8);
+        $teachers = Teacher::all();
+        $phones = Phone::all();
 
-        return view('index', compact('teachers'));
+        return view('user-teachers', compact('teachers', 'phones'));
     }
 
     public function show(Teacher $teacher)
     {
         $teacher->load('articles');
-        return view('show-teachers', compact('teachers'));
+        $phones = Phone::all();
+        return view('show-teacher', compact('teacher', 'phones'));
     }
 
     public function destroy(Teacher $teacher)
