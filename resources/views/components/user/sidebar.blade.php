@@ -25,7 +25,7 @@
         <nav class="text-black">
             <ul class="grid gap-4 text-base leading-none text-right md:text-xl">
                 <?php
-                $links = [['route' => 'dummy', 'content' => 'Обучение: базовый курс онлайн'], ['route' => 'dummy', 'content' => 'Видео курсы'], ['route' => 'dummy', 'content' => "SOFT SKILLS \n Навыки жизни"], ['route' => 'user.teachers', 'content' => 'Преподаватели'], ['route' => 'dummy', 'content' => 'Отзывы'], ['route' => 'dummy', 'content' => 'Текущие мероприятия. Уже стартовали'], ['route' => 'index', 'content' => 'Главная'], ['route' => 'dummy', 'content' => 'Команда психологов. МПЛ 12'], ['route' => 'dummy', 'content' => 'Доступная помощь. Выпускники МПЛ 12'], ['route' => 'dummy', 'content' => 'Видео']];
+                $links = [['route' => 'dummy', 'content' => 'Обучение: базовый курс онлайн'], ['route' => 'videocourses', 'content' => 'Видео курсы'], ['route' => 'dummy', 'content' => "SOFT SKILLS \n Навыки жизни"], ['route' => 'user.teachers', 'content' => 'Преподаватели'], ['route' => 'dummy', 'content' => 'Отзывы'], ['route' => 'dummy', 'content' => 'Текущие мероприятия. Уже стартовали'], ['route' => 'index', 'content' => 'Главная'], ['route' => 'dummy', 'content' => 'Команда психологов. МПЛ 12'], ['route' => 'dummy', 'content' => 'Доступная помощь. Выпускники МПЛ 12'], ['route' => 'dummy', 'content' => 'Видео']];
                 ?>
 
                 @foreach ($links as $link)

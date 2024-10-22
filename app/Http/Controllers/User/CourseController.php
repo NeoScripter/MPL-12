@@ -27,6 +27,14 @@ class CourseController extends Controller
         return view('index', compact('courses', 'phones'));
     }
 
+    public function showVideoCourses()
+    {
+        $courses = Course::where('is_video', true)->latest()->paginate(9);
+        $phones = Phone::all();
+
+        return view('videocourses', compact('courses', 'phones'));
+    }
+
     public function show(Course $course)
     {
         $course->load('schedules');
