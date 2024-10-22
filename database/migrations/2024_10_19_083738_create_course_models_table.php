@@ -16,10 +16,11 @@ return new class extends Migration
             $table->string('image_path')->nullable();
             $table->string('start_date');
             $table->string('format');
-            $table->text('content');
-            $table->text('description');
+            $table->text('content')->nullable();
+            $table->text('description')->nullable();
             $table->text('price')->nullable();
             $table->text('reviews')->nullable();
+            $table->boolean('is_video')->default(false);
             $table->string('title');
             $table->timestamps();
         });

@@ -29,7 +29,9 @@ class TeacherController extends Controller
     {
         $teacher->load('articles');
         $phones = Phone::all();
-        return view('show-teacher', compact('teacher', 'phones'));
+        $teachersCourses = $teacher->courses->pluck('title', 'id')->toArray();
+
+        return view('show-teacher', compact('teacher', 'phones', 'teachersCourses'));
     }
 
     public function destroy(Teacher $teacher)

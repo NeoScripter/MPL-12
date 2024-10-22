@@ -7,8 +7,8 @@
             <div class="pt-20 xl:mx-10 3xl:mx-40">
                 <div class="flex gap-5">
                     @if ($teacher->main_image_path)
-                        <div class="overflow-hidden lg:h-72 lg:w-60 lg:flex-none">
-                            <img class="object-cover object-center w-full h-full"
+                        <div class="overflow-hidden lg:w-60 lg:flex-none">
+                            <img class="object-cover object-top w-full h-full"
                                 src="{{ Storage::url($teacher->main_image_path) }}" alt="">
                         </div>
                     @endif
@@ -32,14 +32,19 @@
                     </div>
                     <div class="my-2 basis-1/3">
                         <h3 class="pl-2 mb-6 text-2xl font-medium">Обучение и мероприятия</h3>
-                        <ul>
-                            <li><a class="text-lg font-medium transition-opacity hover:opacity-70" href="">ЗАКРЫТАЯ СУПЕРВИЗИОННАЯ ГРУППА</a>
-                            </li>
-                            <hr class="my-1">
-                            <li><a class="text-lg font-medium transition-opacity hover:opacity-70" href="">ЗАКРЫТАЯ СУПЕРВИЗИОННАЯ ГРУППА</a>
-                            </li>
-                            <hr class="my-1">
-                        </ul>
+                        @if ($teachersCourses)
+                            <ul>
+                                @foreach ($teachersCourses as $id => $title)
+                                    <li>
+                                        <a class="text-lg font-medium transition-opacity hover:opacity-70"
+                                            href="{{ route('dashboard.show', $id) }}">
+                                            {{ $title }}
+                                        </a>
+                                    </li>
+                                    <hr class="my-1">
+                                @endforeach
+                            </ul>
+                        @endif
                     </div>
                 </div>
                 <div class="my-4 md:w-3/4">
@@ -50,7 +55,7 @@
                             @foreach ($teacher->articles as $article)
                                 <li>
                                     <a class="text-base font-normal md:text-lg text-brand-orange hover:underline"
-                                        href="{{$article->link}}">{{$article->title}}</a>
+                                        href="{{ $article->link }}">{{ $article->title }}</a>
                                 </li>
                             @endforeach
                         </ul>

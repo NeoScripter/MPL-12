@@ -26,6 +26,24 @@
         </div>
 
         <div>
+            <x-input-label :value="__('Видео курс')" />
+            <div
+                class="mt-1 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg w-72 dark:bg-gray-700 dark:border-gray-600 dark:text-white">
+
+                <div class="w-full border-b border-gray-200 rounded-t-lg dark:border-gray-600">
+                    <div class="flex items-center ps-3">
+                        <input id="is_video" type="checkbox" name="is_video"
+                            value="1"
+                            class="w-4 h-4 text-gray-900 bg-gray-100 border-gray-300 rounded focus:ring-gray-900 focus:ring-2">
+                        <label for="is_video"
+                            class="w-full py-3 text-sm font-medium text-gray-900 ms-2 dark:text-gray-300">Да</label>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div>
             <x-input-label for="date" :value="__('Дата начала курса')" />
             <x-text-input id="date" name="date" type="text" class="block w-full mt-1" />
             <x-input-error class="mt-2" :messages="$errors->get('date')" />

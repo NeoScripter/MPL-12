@@ -5,6 +5,7 @@ namespace App\Http\Controllers\User;
 use App\Http\Controllers\Controller;
 use App\Models\Course;
 use App\Models\Phone;
+use App\Models\Teacher;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -13,7 +14,7 @@ class CourseController extends Controller
 
     public function index()
     {
-        $courses = Course::latest()->paginate(9);
+        $courses = Course::latest()->paginate(5);
 
         return view('dashboard', compact('courses'));
     }
@@ -46,7 +47,9 @@ class CourseController extends Controller
     public function edit(Course $course)
     {
         $course->load('schedules');
-        return view('edit-course', compact('course'));
+        $teachers = Teacher::all();
+        $courseTeachers = $course->teachers->pluck('id')->toArray();
+        return view('edit-course', compact('course', 'teachers', 'courseTeachers'));
     }
 
     public function store(Request $request)
@@ -60,6 +63,9 @@ class CourseController extends Controller
             'price' => 'nullable|string',
             'reviews' => 'nullable|string',
             'image' => 'nullable|image|max:1024',
+            'is_video' => 'boolean',
+            'teachers' => 'nullable|array',
+            'teachers.*' => 'exists:teachers,id',
         ]);
 
         $imagePath = null;
@@ -67,7 +73,7 @@ class CourseController extends Controller
             $imagePath = $request->file('image')->store('images', 'public');
         }
 
-        Course::create([
+        $course = Course::create([
             'title' => $validated['title'],
             'format' => $validated['format'],
             'start_date' => $validated['date'],
@@ -75,8 +81,13 @@ class CourseController extends Controller
             'content' => $validated['content'],
             'price' => $validated['price'],
             'reviews' => $validated['reviews'],
+            'is_video' => $validated['is_video'] ?? false,
             'image_path' => $imagePath,
         ]);
+
+        if (!empty($validated['teachers'])) {
+            $course->teachers()->attach($validated['teachers']);
+        }
 
         return redirect()->route('dashboard')->with('status', 'course-created');
     }
@@ -92,6 +103,9 @@ class CourseController extends Controller
             'price' => 'nullable|string',
             'reviews' => 'nullable|string',
             'image' => 'nullable|image|max:1024',
+            'is_video' => 'boolean',
+            'teachers' => 'nullable|array',
+            'teachers.*' => 'exists:teachers,id',
         ]);
 
         if ($request->hasFile('image')) {
@@ -111,8 +125,11 @@ class CourseController extends Controller
             'content' => $validated['content'],
             'price' => $validated['price'],
             'reviews' => $validated['reviews'],
+            'is_video' => $validated['is_video'] ?? false,
             'image_path' => $course->image_path ?? null,
         ]);
+
+        $course->teachers()->sync($validated['teachers'] ?? []);
 
         return redirect()->route('dashboard')->with('status', 'course-updated');
     }
