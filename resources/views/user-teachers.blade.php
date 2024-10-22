@@ -3,7 +3,7 @@
     <x-user.sidebar :phones="$phones" />
 
     <div class="px-4">
-        <div class="my-8 md:flex md:gap-10">
+        <div class="pt-20 my-8 md:flex md:gap-10">
             <div class="flex-1">
                 <p class="text-gray-400">
                     Для того чтобы договориться о индивидуальной супервизии, вы можете позвонить по телефону или
@@ -30,7 +30,7 @@
                         @else
                         <a href="{{ route('teacher.show', $teacher->id) }}" class="block break-inside-avoid">
                         @endif
-                        <div class="p-4 border xl:p-6 border-gray-300/40">
+                        <div class="p-4 border border-gray-300/40">
                             <h3 class="w-10/12 mx-auto text-base font-bold text-center md:text-lg">
                                 {{ $teacher->name }}</h3>
                             <div class="space-y-1 prose text-gray-500 max-w-none">
