@@ -1,28 +1,15 @@
 <x-user-layout>
 
-    <header class="fixed z-30 w-full py-2 md:hidden">
-
-        <div class="flex items-center justify-between w-4/5 mx-auto">
-            <a href="{{ route('index') }}" class="block overflow-hidden w-36">
-                <img src="{{ asset('images/logo.png') }}" alt="">
-            </a>
-            <button class="w-12 overflow-hidden transition-opacity hover:opacity-90">
-                <img src="{{ asset('images/burger.svg') }}" alt="">
-            </button>
-        </div>
-
-    </header>
-
     <x-user.sidebar :phones="$phones" />
 
     <div>
         <div class="relative bg-[url('/images/hero.jpg')] bg-cover bg-center bg-no-repeat min-h-96 w-full pt-24 px-16">
-            <h1 class="mb-1 text-4xl font-medium bg-white shadow-white-large max-w-max">Психологическое консультирование
+            <h1 class="mb-1 text-2xl font-medium bg-white sm:text-4xl shadow-white-large max-w-max">Психологическое консультирование
                 онлайн</h1>
-            <h2 class="mb-4 text-2xl font-medium bg-white md:mb-12 shadow-white-large max-w-max">Базовый курс обучения
+            <h2 class="mb-4 text-base font-medium bg-white sm:text-2xl md:mb-12 shadow-white-large max-w-max">Базовый курс обучения
             </h2>
             <a href=""
-                class="block px-4 py-2 font-normal text-white transition-opacity bg-brand-orange w-max hover:opacity-90">Оставить
+                class="block px-4 py-2 font-normal text-white transition-colors border bg-brand-orange w-max hover:bg-white hover:text-brand-orange border-brand-orange">Оставить
                 заявку</a>
         </div>
         <div class="grid w-10/12 gap-8 mx-auto mt-8 sm:grid-cols-auto-fit-240 xl:grid-cols-3 md:gap-12 md:mt-12 md:w-10/12">
@@ -34,7 +21,7 @@
                             <img class="object-cover object-center w-full h-full"
                                 src="{{ Storage::url($course->image_path) }}" alt="">
                         </a>
-                        <h3 class="w-10/12 mx-auto my-2 text-2xl font-bold text-center text-brand-orange">
+                        <h3 class="w-10/12 mx-auto my-2 text-xl font-bold text-center md:text-2xl text-brand-orange">
                             {{ $course->title }}</h3>
                         <div class="grid gap-1 py-3 border-t border-b border-gray-300">
                             <span

@@ -14,12 +14,10 @@ class ScheduleController extends Controller
             'schedule' => 'required|string|max:255',
         ]);
 
-        // Find the course by its ID
         $course = Course::findOrFail($courseId);
 
-        // Create a new schedule and associate it with the course
         $course->schedules()->create([
-            'content' => $validated['schedule'], // Use 'schedule' field for content
+            'content' => $validated['schedule'],
         ]);
 
         return redirect()->back();

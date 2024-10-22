@@ -1,44 +1,87 @@
-<sidebar class="hidden px-8 place-content-start md:grid md:gap-6 md:w-72 shrink-0">
-    <a href="{{ route('index') }}" class="block overflow-hidden">
-        <img src="{{ asset('images/logo.png') }}" alt="">
-    </a>
+<div x-data="{isShown: false}">
+    <header class="fixed z-30 w-full py-2 bg-white/70 md:hidden">
 
-    <nav class="text-black">
-        <ul class="gap-4 text-xl leading-none text-right md:grid">
-            <?php $linkContent = ['Обучение: базовый курс онлайн', 'Видео курсы', "SOFT SKILLS \n Навыки жизни", 'Супервизия', 'Отзывы', 'Текущие мероприятия. Уже стартовали', 'Идет набор. Предварительная запись', 'Команда психологов. МПЛ 12', 'Доступная помощь. Выпускники МПЛ 12', 'Видео']; ?>
-            @foreach ($linkContent as $link)
-                <li><a href="" class="transition-colors hover:text-brand-orange">{{ $link }}</a></li>
-            @endforeach
-        </ul>
-    </nav>
+        <div class="flex items-center justify-between w-4/5 mx-auto">
+            <a href="{{ route('index') }}" class="block overflow-hidden w-36">
+                <img src="{{ asset('images/logo.png') }}" alt="">
+            </a>
+            <button
+            @click="isShown = true"
+            class="w-12 overflow-hidden transition-opacity hover:opacity-90">
+                <img src="{{ asset('images/burger.svg') }}" alt="">
+            </button>
+        </div>
 
-    <a href="mailto:admin@mospsylab.ru"
-        class="flex items-center justify-center gap-3 p-2 border border-brand-orange text-brand-orange">Напишите нам
-        <img class="h-full" src="{{ asset('images/email.svg') }}" alt="">
-    </a>
+    </header>
 
-    <div class="flex items-center">
-        <input class="w-9/12 bg-gray-100 border-none shrink-1 focus:ring-1 focus:ring-brand-orange" type="search"
-            placeholder="Поиск...">
-        <button class="flex items-center justify-center w-12 h-full cursor-pointer bg-brand-orange shrink-0">
-            <img src="{{ asset('images/search.svg') }}" alt="">
+    <sidebar
+    :class="isShown ? '' : 'translate-x-full'"
+    class="fixed transition-transform duration-500 md:transform-none top-0 right-0 z-30 grid gap-6 px-8 pt-4 pb-12 md:pb-0 md:pt-0 bg-white md:static place-content-start max-w-full w-[317px] md:w-72 shrink-0">
+        <a href="{{ route('index') }}" class="hidden overflow-hidden md:block">
+            <img src="{{ asset('images/logo.png') }}" alt="">
+        </a>
+
+        <button
+        @click="isShown = false"
+        class="ml-auto md:hidden">
+            <img class="w-8 h-8" src="{{ asset('images/close-brg.svg') }}" alt="">
         </button>
 
-    </div>
+        <nav class="text-black">
+            <ul class="grid gap-4 text-base leading-none text-right md:text-xl">
+                <?php $linkContent = ['Обучение: базовый курс онлайн', 'Видео курсы', "SOFT SKILLS \n Навыки жизни", 'Супервизия', 'Отзывы', 'Текущие мероприятия. Уже стартовали', 'Идет набор. Предварительная запись', 'Команда психологов. МПЛ 12', 'Доступная помощь. Выпускники МПЛ 12', 'Видео']; ?>
+                @foreach ($linkContent as $link)
+                    <li><a href="" class="transition-colors hover:text-brand-orange">{{ $link }}</a></li>
+                @endforeach
+            </ul>
+        </nav>
 
-    <div class="block px-4 py-2 font-normal text-white transition-opacity bg-brand-orange">Телефоны</div>
+        <a href="mailto:admin@mospsylab.ru"
+            class="flex items-center justify-center gap-3 p-2 transition-colors border border-brand-orange text-brand-orange mail-svg hover:bg-brand-orange">
+            {!! file_get_contents(public_path('images/email.svg')) !!}
+        </a>
 
-    <ul class="grid gap-3">
+        <style>
+            .mail-svg:hover path {
+                fill: white;
+            }
 
-        @if (isset($phones))
+            .mail-svg:hover rect {
+                fill: #C3512F;
+            }
+        </style>
+
+        <div
+            class="container flex items-center transition-all border border-transparent focus-within:border-brand-orange focus-within:ring-1 focus-within:ring-brand-orange">
+            <input class="flex-1 w-9/12 bg-gray-100 border-none focus:outline-none focus:ring-0" type="search"
+                placeholder="Поиск...">
+            <button class="flex items-center justify-center w-12 h-full cursor-pointer hover:bg-white hover:ring-2 hover:ring-brand-orange search-svg bg-brand-orange">
+                {!! file_get_contents(public_path('images/search.svg')) !!}
+            </button>
+        </div>
+
+        <style>
+            .search-svg:hover path {
+                fill: #C3512F;
+            }
+        </style>
+
+        <div class="hidden px-4 py-2 font-normal text-white transition-opacity md:block bg-brand-orange">Телефоны</div>
+
+        <ul class="hidden gap-3 md:grid">
+
+            @if (isset($phones))
                 @foreach ($phones as $phone)
                     <li>
-                        <a href="" class="block hover:underline text-brand-orange text-md hover:text-gray-400">{{ $phone->number }}</a>
-                        <a href="" class="block hover:underline text-brand-orange text-md hover:text-gray-400">{{ $phone->email }}</a>
+                        <a href=""
+                            class="block hover:underline text-brand-orange text-md hover:text-gray-400">{{ $phone->number }}</a>
+                        <a href=""
+                            class="block hover:underline text-brand-orange text-md hover:text-gray-400">{{ $phone->email }}</a>
                         <div class="text-gray-400">{!! $phone->text !!}</div>
                     </li>
                 @endforeach
 
             @endif
-    </ul>
-</sidebar>
+        </ul>
+    </sidebar>
+</div>
