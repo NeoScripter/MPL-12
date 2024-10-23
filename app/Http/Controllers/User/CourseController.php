@@ -16,7 +16,7 @@ class CourseController extends Controller
     {
         $courses = Course::latest()->paginate(5);
 
-        return view('dashboard', compact('courses'));
+        return view('profile.courses.dashboard', compact('courses'));
     }
 
     public function showAll()
@@ -60,7 +60,7 @@ class CourseController extends Controller
         $course->load('schedules');
         $teachers = Teacher::all();
         $courseTeachers = $course->teachers->pluck('id')->toArray();
-        return view('edit-course', compact('course', 'teachers', 'courseTeachers'));
+        return view('profile.courses.edit-course', compact('course', 'teachers', 'courseTeachers'));
     }
 
     public function store(Request $request)

@@ -12,7 +12,7 @@ class PhoneController extends Controller
     {
         $phones = Phone::all();
 
-        return view('phones', compact('phones'));
+        return view('profile.phones.phones', compact('phones'));
     }
 
     public function destroy(Phone $phone)
@@ -27,7 +27,7 @@ class PhoneController extends Controller
 
     public function edit(Phone $phone)
     {
-        return view('edit-phone', compact('phone'));
+        return view('profile.phones.edit-phone', compact('phone'));
     }
 
     public function store(Request $request)

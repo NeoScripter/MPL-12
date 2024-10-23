@@ -14,7 +14,7 @@ class TeacherController extends Controller
     {
         $teachers = Teacher::latest()->paginate(9);
 
-        return view('teachers', compact('teachers'));
+        return view('profile.teachers.teachers', compact('teachers'));
     }
 
     public function showAll()
@@ -22,7 +22,7 @@ class TeacherController extends Controller
         $teachers = Teacher::all();
         $phones = Phone::all();
 
-        return view('user-teachers', compact('teachers', 'phones'));
+        return view('teachers', compact('teachers', 'phones'));
     }
 
     public function show(Teacher $teacher)
@@ -53,7 +53,7 @@ class TeacherController extends Controller
     public function edit(Teacher $teacher)
     {
         $teacher->load('articles');
-        return view('edit-teacher', compact('teacher'));
+        return view('profile.teachers.edit-teacher', compact('teacher'));
     }
 
     public function store(Request $request)

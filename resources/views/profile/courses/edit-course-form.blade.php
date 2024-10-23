@@ -6,25 +6,13 @@
             @method('PUT')
 
             <div class="flex items-center gap-4">
-                <a href="{{ route('dashboard') }}" class="inline-flex items-center px-4 py-2 text-xs font-semibold tracking-widest text-white uppercase transition duration-150 ease-in-out bg-gray-800 border border-transparent rounded-md hover:bg-gray-700 focus:bg-gray-700 active:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">Назад</a>
-
+                <x-user.link href="{{ route('dashboard') }}">Назад</x-user.link>
             </div>
             <hr>
 
+            <x-form-field name="title" label="Название курса" :value="$course->title" />
 
-            <div>
-                <x-input-label for="title" :value="__('Название курса')" />
-                <x-text-input id="title" name="title" type="text" class="block w-full mt-1"
-                    value="{{ $course->title }}" />
-                <x-input-error class="mt-2" :messages="$errors->get('title')" />
-            </div>
-
-            <div>
-                <x-input-label for="format" :value="__('Формат курса')" />
-                <x-text-input id="format" name="format" type="text" class="block w-full mt-1"
-                    value="{{ $course->format }}" />
-                <x-input-error class="mt-2" :messages="$errors->get('format')" />
-            </div>
+            <x-form-field name="format" label="Формат курса" :value="$course->format" />
 
             <div>
                 <x-input-label :value="__('Видео курс')" />
@@ -45,40 +33,15 @@
                 </div>
             </div>
 
-            <div>
-                <x-input-label for="date" :value="__('Дата начала курса')" />
-                <x-text-input id="date" name="date" type="text" class="block w-full mt-1"
-                    value="{{ $course->start_date }}" />
-                <x-input-error class="mt-2" :messages="$errors->get('date')" />
-            </div>
+            <x-form-field name="date" label="Дата начала курса" :value="$course->start_date" />
 
-            <div>
-                <x-input-label class="mb-1" for="description" :value="__('Описание курса')" />
-                <x-text-area id="description" name="description"
-                    class="block w-full mt-1 wysiwyg-editor">{{ $course->description }}</x-text-area>
-                <x-input-error class="mt-2" :messages="$errors->get('description')" />
-            </div>
+            <x-form-field name="description" label="Описание курса" :is-textarea="true" :value="$course->description" />
 
-            <div>
-                <x-input-label class="mb-1" for="content" :value="__('Подробное содержание курса')" />
-                <x-text-area id="content" name="content"
-                    class="block w-full mt-1 wysiwyg-editor">{{ $course->content }}</x-text-area>
-                <x-input-error class="mt-2" :messages="$errors->get('content')" />
-            </div>
+            <x-form-field name="content" label="Подробное содержание курса" :is-textarea="true" :value="$course->content" />
 
-            <div>
-                <x-input-label class="mb-1" for="price" :value="__('Цена курса')" />
-                <x-text-area id="price" name="price"
-                    class="block w-full mt-1 wysiwyg-editor">{{ $course->price }}</x-text-area>
-                <x-input-error class="mt-2" :messages="$errors->get('price')" />
-            </div>
+            <x-form-field name="price" label="Цена курса" :is-textarea="true" :value="$course->price" />
 
-            <div>
-                <x-input-label class="mb-1" for="reviews" :value="__('Отзывы курса')" />
-                <x-text-area id="reviews" name="reviews"
-                    class="block w-full mt-1 wysiwyg-editor">{{ $course->reviews }}</x-text-area>
-                <x-input-error class="mt-2" :messages="$errors->get('reviews')" />
-            </div>
+            <x-form-field name="reviews" label="Отзывы курса" :is-textarea="true" :value="$course->reviews" />
 
             <div>
                 <x-input-label :value="__('Добавить преподавателей курса')" />
@@ -101,21 +64,8 @@
                 </ul>
             </div>
 
-            <div>
-                <p class="block mb-1 text-sm font-medium text-gray-700">Фото курса</p>
-                <div>
-                    <figure class="relative max-w-sm mb-1">
-                        <img class="rounded-lg" src="{{ Storage::url($course->image_path) }}" alt="image description">
-                    </figure>
-
-                </div>
-
-                <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="image">Новое
-                    фото</label>
-                <input
-                    class="block w-full text-lg text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
-                    id="image" name="image" type="file">
-            </div>
+            <x-user.image-upload label="Фото курса" :image-path="$course->image_path" alt-text="Главное фото"
+                new-label="Новое фото" input-id="image" input-name="image" />
 
             <div class="flex items-center gap-4">
 

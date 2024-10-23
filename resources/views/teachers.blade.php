@@ -1,22 +1,62 @@
-<x-app-layout>
-    <x-slot name="header">
-        <h2 class="text-xl font-semibold leading-tight text-gray-800">
-            Преподаватели
-        </h2>
-    </x-slot>
+<x-user-layout>
 
-    <div class="py-12">
-        <div class="mx-auto max-w-7xl sm:px-6 lg:px-8">
-            <div class="mb-6 overflow-hidden bg-white shadow-sm sm:rounded-lg">
-                <div class="p-4 bg-white shadow sm:p-8 sm:rounded-lg">
-                    @include('profile.partials.teachers.show-all-teachers')
-                </div>
+    <x-user.sidebar :phones="$phones" />
+
+    <div class="px-4">
+        <div class="pt-20 my-8 md:flex md:gap-10">
+            <div class="flex-1">
+                <p class="text-gray-400">
+                    Для того чтобы договориться о индивидуальной супервизии, вы можете позвонить по телефону или
+                    отправить нам сообщение. Пожалуйста, указывайте в сообщении ваш контактный номер телефона.
+                </p>
+                <p class="mt-2 font-bold text-brand-orange">Телефон: +7(968)930-29-01, Анастасия</p>
             </div>
-            <div class="overflow-hidden bg-white shadow-sm sm:rounded-lg">
-                <div class="p-4 bg-white shadow sm:p-8 sm:rounded-lg">
-                    @include('profile.partials.teachers.add-teacher-form')
-                </div>
+            <div class="flex-1">
+                <p class="text-gray-400">Так же действуют регулярные групповые супервизии. Информацию о расписании и
+                    условиях найдете в разделе <a class="text-brand-orange" href="{{ route('index') }}">"Расписание
+                        текущих супервизий"</a></p>
             </div>
         </div>
+        <div class="relative 3xl:[columns:6] xl:[columns:5] lg:[columns:3] 2sm:[columns:2] [column-gap:0]">
+            @if (isset($teachers))
+                @foreach ($teachers as $teacher)
+                        @if ($teacher->main_image_path)
+                        <a href="{{ route('teacher.show', $teacher->id) }}" class="block col-span-2 break-inside-avoid">
+                            <div
+                                class="relative block overflow-hidden after:inset-0 after:z-20 after:bg-white after:opacity-20 after:absolute after:hover:opacity-0 after:transition-opacity group">
+                                <img class="object-cover object-center w-full h-full transition-transform duration-500 group-hover:scale-110"
+                                    src="{{ Storage::url($teacher->main_image_path) }}" alt="">
+                            </div>
+                        @else
+                        <a href="{{ route('teacher.show', $teacher->id) }}" class="block break-inside-avoid">
+                        @endif
+                        <div class="p-4 border border-gray-300/40">
+                            <h3 class="w-10/12 mx-auto text-base font-bold text-center md:text-lg">
+                                {{ $teacher->name }}</h3>
+                            <div class="space-y-1 prose text-gray-500 max-w-none">
+                                {!! $teacher->quote !!}
+                            </div>
+                        </div>
+                    </a>
+                @endforeach
+            @endif
+        </div>
+
+        <style>
+            .grid-m {
+            --columns: 6;
+            display: column;
+            columns: var(--columns);
+            }
+
+            .grid-m > * {
+            break-inside: avoid;
+            }
+            .featured {
+            grid-column: span 2;
+            }
+        </style>
+
+        <x-user.footer :phones="$phones" />
     </div>
-</x-app-layout>
+</x-user-layout>
