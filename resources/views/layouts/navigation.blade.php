@@ -81,9 +81,24 @@
 
     <!-- Responsive Navigation Menu -->
     <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
-        <div class="pt-2 pb-3 space-y-1">
+        <div class="space-y-1">
             <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
-                Панель управления
+                Курсы
+            </x-responsive-nav-link>
+        </div>
+        <div class="space-y-1">
+            <x-responsive-nav-link :href="route('teachers')" :active="request()->routeIs('teachers')">
+                Преподаватели
+            </x-responsive-nav-link>
+        </div>
+        <div class="space-y-1">
+            <x-responsive-nav-link :href="route('phones')" :active="request()->routeIs('phones')">
+                Телефоны
+            </x-responsive-nav-link>
+        </div>
+        <div class="space-y-1">
+            <x-responsive-nav-link :href="route('general')" :active="request()->routeIs('general')">
+                Общее
             </x-responsive-nav-link>
         </div>
 

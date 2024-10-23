@@ -44,7 +44,10 @@ class TeacherController extends Controller
         }
         $teacher->delete();
 
-        return redirect()->route('teachers')->with('status', 'teacher-deleted');
+        return redirect()->route('teachers')->with([
+            'status' => 'success',
+            'message' => 'Преподаватель удален!',
+        ]);
     }
 
     public function edit(Teacher $teacher)
@@ -57,8 +60,8 @@ class TeacherController extends Controller
     {
         $validated = $request->validate([
             'name' => 'required|string|max:255',
-            'quote' => 'nullable|string',
-            'education' => 'nullable|string|max:10000',
+            'quote' => 'required|string',
+            'education' => 'required|string|max:10000',
             'main_image' => 'nullable|image|max:1024',
             'secondary_image' => 'nullable|image|max:1024',
         ]);
@@ -81,15 +84,18 @@ class TeacherController extends Controller
             'secondary_image_path' => $secondaryImagePath,
         ]);
 
-        return redirect()->route('teachers')->with('status', 'teacher-created');
+        return redirect()->route('teachers')->with([
+            'status' => 'success',
+            'message' => 'Преподаватель создан!',
+        ]);
     }
 
     public function update(Request $request, Teacher $teacher)
     {
         $validated = $request->validate([
             'name' => 'required|string|max:255',
-            'quote' => 'nullable|string',
-            'education' => 'nullable|string|max:10000',
+            'quote' => 'required|string',
+            'education' => 'required|string|max:10000',
             'main_image' => 'nullable|image|max:1024',
             'secondary_image' => 'nullable|image|max:1024',
         ]);
@@ -121,6 +127,9 @@ class TeacherController extends Controller
         ]);
 
 
-        return redirect()->route('teachers')->with('status', 'teacher-updated');
+        return redirect()->route('teachers')->with([
+            'status' => 'success',
+            'message' => 'Информация о преподавателе успешно обновлена!',
+        ]);
     }
 }

@@ -2,6 +2,17 @@
 
     <x-user.sidebar :phones="$phones" />
 
+    @if (session('status') === 'error')
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const errorElement = document.getElementById('webform');
+            if (errorElement) {
+                errorElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }
+        });
+    </script>
+    @endif
+
     <div>
         @if (isset($course))
 
@@ -12,11 +23,9 @@
                     <div class="gap-6 xl:flex">
                         <p class="text-gray-500 xl:flex-1 xl:text-3xl xl:text-right">{{ $course->start_date }}</p>
                         <div class="xl:flex-1">
-                            <p class="italic text-brand-orange"><span class="text-gray-500">Ведущие:</span> Александр
-                                Мусихин, Алексей Андреев-Чадаев, Арман
-                                Бекенов, Дмитрий Шаповалов, Ирина Андреева-Чадаева, Марианна Шипицына, Наталья
-                                Белова, Юлия
-                                Зотова</p>
+                            <p class="italic text-brand-orange"><span
+                                    class="text-gray-500">Ведущие: </span>{{ $course->teachers->pluck('name')->map(fn($name) => strtoupper($name))->implode(', ') }}
+                            </p>
                             <h4 class="italic">Формат: {{ $course->format }}</h4>
                             <div class="space-y-1 max-w-none">
                                 {!! $course->price !!}
@@ -64,7 +73,9 @@
 
                         <hr class="my-8">
 
-                        <div class="hidden px-4 py-2 text-base font-medium text-center text-white uppercase transition-opacity lg:text-xl md:block bg-brand-orange">Запись по контактам в анонсе курса</div>
+                        <div
+                            class="hidden px-4 py-2 text-base font-medium text-center text-white uppercase transition-opacity lg:text-xl md:block bg-brand-orange">
+                            Запись по контактам в анонсе курса</div>
 
                         <hr class="my-4">
 
@@ -74,7 +85,7 @@
                 </div>
             </div>
 
-            <div>
+            <div class="xl:max-w-6xl ">
                 <h3 class="my-4 font-bold text-center text-black text-md">Отзывы о курсе</h3>
                 <div class="px-8 space-y-2 html-content">
                     {!! $course->reviews !!}

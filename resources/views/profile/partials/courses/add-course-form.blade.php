@@ -32,8 +32,7 @@
 
                 <div class="w-full border-b border-gray-200 rounded-t-lg dark:border-gray-600">
                     <div class="flex items-center ps-3">
-                        <input id="is_video" type="checkbox" name="is_video"
-                            value="1"
+                        <input id="is_video" type="checkbox" name="is_video" value="1"
                             class="w-4 h-4 text-gray-900 bg-gray-100 border-gray-300 rounded focus:ring-gray-900 focus:ring-2">
                         <label for="is_video"
                             class="w-full py-3 text-sm font-medium text-gray-900 ms-2 dark:text-gray-300">Да</label>
@@ -75,8 +74,8 @@
 
         <div>
             <p class="block mb-1 text-sm font-medium text-gray-700">Фото курса</p>
-            <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-                for="image">Новое фото</label>
+            <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="image">Новое
+                фото</label>
             <input
                 class="block w-full text-lg text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
                 id="image" name="image" type="file">
@@ -86,10 +85,7 @@
         <div class="flex items-center gap-4">
             <x-primary-button>{{ __('Создать') }}</x-primary-button>
 
-            @if (session('status') === 'course-created')
-                <p x-data="{ show: true }" x-show="show" x-transition x-init="setTimeout(() => show = false, 2000)"
-                    class="text-sm text-gray-600">{{ __('Сохранено.') }}</p>
-            @endif
+
         </div>
     </form>
 

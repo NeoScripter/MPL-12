@@ -49,7 +49,10 @@ class CourseController extends Controller
         }
         $course->delete();
 
-        return redirect()->route('dashboard')->with('status', 'course-deleted');
+        return redirect()->route('dashboard')->with([
+            'status' => 'success',
+            'message' => 'Курс удален!',
+        ]);
     }
 
     public function edit(Course $course)
@@ -97,7 +100,10 @@ class CourseController extends Controller
             $course->teachers()->attach($validated['teachers']);
         }
 
-        return redirect()->route('dashboard')->with('status', 'course-created');
+        return redirect()->route('dashboard')->with([
+            'status' => 'success',
+            'message' => 'Курс успешно создан!',
+        ]);
     }
 
     public function update(Request $request, Course $course)
@@ -139,6 +145,9 @@ class CourseController extends Controller
 
         $course->teachers()->sync($validated['teachers'] ?? []);
 
-        return redirect()->route('dashboard')->with('status', 'course-updated');
+        return redirect()->route('dashboard')->with([
+            'status' => 'success',
+            'message' => 'Курс успешно обновлен!',
+        ]);
     }
 }

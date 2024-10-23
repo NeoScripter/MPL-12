@@ -19,7 +19,10 @@ class PhoneController extends Controller
     {
         $phone->delete();
 
-        return redirect()->route('phones')->with('status', 'phone-deleted');
+        return redirect()->route('phones')->with([
+            'status' => 'success',
+            'message' => 'Контакт удален!',
+        ]);
     }
 
     public function edit(Phone $phone)
@@ -42,7 +45,10 @@ class PhoneController extends Controller
             'text' => $validated['text']
         ]);
 
-        return redirect()->route('phones')->with('status', 'phone-created');
+        return redirect()->route('phones')->with([
+            'status' => 'success',
+            'message' => 'Контакт создан!',
+        ]);
     }
 
     public function update(Request $request, Phone $phone)
@@ -60,6 +66,9 @@ class PhoneController extends Controller
             'text' => $validated['text']
         ]);
 
-        return redirect()->route('phones')->with('status', 'phone-updated');
+        return redirect()->route('phones')->with([
+            'status' => 'success',
+            'message' => 'Контакт обновлен!',
+        ]);
     }
 }

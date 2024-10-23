@@ -5,17 +5,12 @@
             @csrf
             @method('PUT')
 
-
             <div class="flex items-center gap-4">
                 <a href="{{ route('dashboard') }}" class="inline-flex items-center px-4 py-2 text-xs font-semibold tracking-widest text-white uppercase transition duration-150 ease-in-out bg-gray-800 border border-transparent rounded-md hover:bg-gray-700 focus:bg-gray-700 active:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">Назад</a>
 
-                <x-primary-button>{{ __('Сохранить изменения') }}</x-primary-button>
-
-                <x-danger-button x-data=""
-                    x-on:click.prevent="$dispatch('open-modal', 'confirm-course-deletion')">{{ __('Удалить курс') }}</x-danger-button>
-
             </div>
             <hr>
+
 
             <div>
                 <x-input-label for="title" :value="__('Название курса')" />
@@ -122,23 +117,17 @@
                     id="image" name="image" type="file">
             </div>
 
-            <div class="space-y-4">
-                <div class="space-y-4">
-                    <div>
-                        <x-input-label for="schedule" :value="__('Добавить расписание')" />
-                        <x-text-input id="schedule" name="schedule" type="text" class="block w-full mt-1"
-                            form="add-schedule-form" />
-                        <x-input-error class="mt-2" :messages="$errors->get('schedule')" />
-                    </div>
+            <div class="flex items-center gap-4">
 
-                    <x-primary-button type="submit" form="add-schedule-form">
-                        {{ __('Добавить') }}
-                    </x-primary-button>
-                </div>
+                <x-primary-button>{{ __('Сохранить изменения') }}</x-primary-button>
+
+                <x-danger-button x-data=""
+                    x-on:click.prevent="$dispatch('open-modal', 'confirm-course-deletion')">{{ __('Удалить курс') }}</x-danger-button>
+
             </div>
+            <hr>
         </form>
         <div class="mt-6">
-            <hr>
             <p class="block mt-6 mb-2 text-sm font-medium text-gray-700">Расписания курса</p>
             <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
                 <table class="w-full text-sm text-left text-gray-500 rtl:text-right dark:text-gray-400">
@@ -170,6 +159,21 @@
                         @endforelse
                     </tbody>
                 </table>
+            </div>
+        </div>
+        <div class="mt-6 space-y-4">
+            <hr>
+            <div class="space-y-4">
+                <div>
+                    <x-input-label for="schedule" :value="__('Добавить расписание')" />
+                    <x-text-input id="schedule" name="schedule" type="text" class="block w-full mt-1"
+                        form="add-schedule-form" />
+                    <x-input-error class="mt-2" :messages="$errors->get('schedule')" />
+                </div>
+
+                <x-primary-button type="submit" form="add-schedule-form">
+                    {{ __('Добавить') }}
+                </x-primary-button>
             </div>
         </div>
 
@@ -205,4 +209,5 @@
             </div>
         </form>
     </x-modal>
+
 @endif

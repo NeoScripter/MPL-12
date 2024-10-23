@@ -4,14 +4,11 @@
         @csrf
         @method('PUT')
 
-
         <div class="flex items-center gap-4">
-            <x-primary-button>{{ __('Сохранить изменения') }}</x-primary-button>
-
-            <x-danger-button x-data=""
-                x-on:click.prevent="$dispatch('open-modal', 'confirm-phone-deletion')">{{ __('Удалить телефон') }}</x-danger-button>
+            <a href="{{ route('phones') }}" class="inline-flex items-center px-4 py-2 text-xs font-semibold tracking-widest text-white uppercase transition duration-150 ease-in-out bg-gray-800 border border-transparent rounded-md hover:bg-gray-700 focus:bg-gray-700 active:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">Назад</a>
 
         </div>
+
         <hr>
         <div>
             <x-input-label for="number" :value="__('Телефон')" />
@@ -29,6 +26,15 @@
             <x-input-label class="mb-1" for="text" :value="__('Описание')" />
             <x-text-area id="text" name="text" class="block w-full mt-1 wysiwyg-editor">{{ $phone->text }}</x-text-area>
             <x-input-error class="mt-2" :messages="$errors->get('text')" />
+        </div>
+
+        <hr>
+        <div class="flex items-center gap-4">
+            <x-primary-button>{{ __('Сохранить изменения') }}</x-primary-button>
+
+            <x-danger-button x-data=""
+                x-on:click.prevent="$dispatch('open-modal', 'confirm-phone-deletion')">{{ __('Удалить телефон') }}</x-danger-button>
+
         </div>
     </form>
 </section>

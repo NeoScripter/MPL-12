@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ArticleController;
+use App\Http\Controllers\ContactController;
 use App\Http\Controllers\PhoneController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ScheduleController;
@@ -32,6 +33,8 @@ Route::get('/dummy', function() {
     $phones = Phone::all();
     return view('dummy', compact('phones'));
 })->name('dummy');
+
+Route::post('/send-email', [ContactController::class, 'sendEmail'])->name('send.email');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
