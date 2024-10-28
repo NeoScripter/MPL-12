@@ -1,6 +1,6 @@
 <x-user-layout>
 
-    <x-user.sidebar :phones="$phones" />
+    <x-user.sidebar :phones="$phones" :info="$info" />
 
     <div class="px-6">
         @if (isset($teacher))
@@ -64,6 +64,6 @@
             </div>
         @endif
 
-        <x-user.footer :phones="$phones" />
+        <x-user.footer :phones="$phones" :info="$info" />
     </div>
 </x-user-layout>

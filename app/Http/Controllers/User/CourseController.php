@@ -4,6 +4,7 @@ namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
 use App\Models\Course;
+use App\Models\GeneralInfo;
 use App\Models\Phone;
 use App\Models\Teacher;
 use Illuminate\Http\Request;
@@ -23,23 +24,26 @@ class CourseController extends Controller
     {
         $courses = Course::latest()->paginate(9);
         $phones = Phone::all();
+        $info = GeneralInfo::first();
 
-        return view('index', compact('courses', 'phones'));
+        return view('index', compact('courses', 'phones', 'info'));
     }
 
     public function showVideoCourses()
     {
         $courses = Course::where('is_video', true)->latest()->paginate(9);
         $phones = Phone::all();
+        $info = GeneralInfo::first();
 
-        return view('videocourses', compact('courses', 'phones'));
+        return view('videocourses', compact('courses', 'phones', 'info'));
     }
 
     public function show(Course $course)
     {
         $course->load('schedules');
         $phones = Phone::all();
-        return view('show-course', compact('course', 'phones'));
+        $info = GeneralInfo::first();
+        return view('show-course', compact('course', 'phones', 'info'));
     }
 
     public function destroy(Course $course)

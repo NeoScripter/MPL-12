@@ -1,6 +1,6 @@
 <x-user-layout>
 
-    <x-user.sidebar :phones="$phones" />
+    <x-user.sidebar :phones="$phones" :info="$info" />
 
     <div class="px-4">
         <div class="pt-20 my-8 md:flex md:gap-10">
@@ -57,6 +57,6 @@
             }
         </style>
 
-        <x-user.footer :phones="$phones" />
+        <x-user.footer :phones="$phones" :info="$info" />
     </div>
 </x-user-layout>

@@ -8,6 +8,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ScheduleController;
 use App\Http\Controllers\User\CourseController;
 use App\Http\Controllers\User\TeacherController;
+use App\Models\GeneralInfo;
 use App\Models\Phone;
 use Illuminate\Support\Facades\Route;
 
@@ -32,8 +33,17 @@ Route::get('/teacher/{teacher}', [TeacherController::class, 'show'])->name('teac
 
 Route::get('/dummy', function() {
     $phones = Phone::all();
-    return view('dummy', compact('phones'));
+    $info = GeneralInfo::first();
+    return view('dummy', compact('phones', 'info'));
 })->name('dummy');
+
+Route::get('/softskills', function () {
+    return redirect('https://softskills-course.ru');
+})->name('softskills');
+
+Route::get('/basiccourse', function () {
+    return redirect('https://online.mpl12.institute');
+})->name('basiccourse');
 
 Route::post('/send-email', [ContactController::class, 'sendEmail'])->name('send.email');
 
@@ -69,8 +79,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('/articles/{article}', [ArticleController::class, 'destroy'])->name('article.destroy');
 
     Route::get('/general', [GeneralInfoController::class, 'edit'])->name('general');
-    Route::get('/general/{info}', [GeneralInfoController::class, 'edit'])->name('general.edit');
-    Route::put('/general/{info}', [GeneralInfoController::class, 'update'])->name('general.update');
+    Route::put('/general-info/update', [GeneralInfoController::class, 'update'])->name('general.update');
 
 });
 

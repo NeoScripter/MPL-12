@@ -24,12 +24,27 @@
 
         <nav class="text-black">
             <ul class="grid gap-4 text-base leading-none text-right md:text-xl">
-                <?php
-                $links = [['route' => 'dummy', 'content' => 'Обучение: базовый курс онлайн'], ['route' => 'videocourses', 'content' => 'Видео курсы'], ['route' => 'dummy', 'content' => "SOFT SKILLS \n Навыки жизни"], ['route' => 'user.teachers', 'content' => 'Преподаватели'], ['route' => 'dummy', 'content' => 'Отзывы'], ['route' => 'dummy', 'content' => 'Текущие мероприятия. Уже стартовали'], ['route' => 'index', 'content' => 'Главная'], ['route' => 'dummy', 'content' => 'Команда психологов. МПЛ 12'], ['route' => 'dummy', 'content' => 'Доступная помощь. Выпускники МПЛ 12'], ['route' => 'dummy', 'content' => 'Видео']];
-                ?>
+                @php
+                    // Decode the menu_names JSON into an array
+                    $menuNames = json_decode($info->menu_names, true);
 
-                @foreach ($links as $link)
-                    <x-sidebar-link :route="$link['route']" :content="$link['content']" />
+                    // Define a list of routes (keep order in sync with menuNames)
+                    $routes = [
+                        'basiccourse', 'videocourses', 'softskills',
+                        'user.teachers', 'dummy', 'dummy',
+                        'index', 'dummy', 'dummy', 'dummy'
+                    ];
+                @endphp
+
+                <!-- Iterate over menu names and combine with routes -->
+                @foreach ($menuNames as $index => $menuName)
+                    @php
+                        // Check if the route exists at the current index
+                        $route = $routes[$index] ?? 'dummy'; // Default to 'dummy' if index doesn't exist
+                    @endphp
+
+                    <!-- Pass the route and content to x-sidebar-link -->
+                    <x-sidebar-link :route="$route" :content="$menuName" />
                 @endforeach
             </ul>
         </nav>

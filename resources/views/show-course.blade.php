@@ -1,6 +1,6 @@
 <x-user-layout>
 
-    <x-user.sidebar :phones="$phones" />
+    <x-user.sidebar :phones="$phones" :info="$info" />
 
     @if (session('status') === 'error')
     <script>
@@ -41,13 +41,13 @@
                     <div>
                         <div class="p-8 space-y-3 text-gray-500">
                             <h3 class="font-bold text-black text-md">Для записи свяжитесь с куратором:</h3>
-                            <a href="" class="text-brand-orange">online.curator@mospsylab.ru</a>
+                            <a href="mailto:online.curator@mospsylab.ru" class="text-brand-orange">online.curator@mospsylab.ru</a>
                             <p class="text-gray-500">+7(925)506-17-12 </p>
                             <div class="flex items-center gap-3">
-                                <button
-                                    class="block px-4 py-2 font-normal text-white transition-colors border border-brand-orange bg-brand-orange w-min hover:bg-white hover:text-brand-orange">WhatsApp</button>
-                                <button
-                                    class="block px-4 py-2 font-normal text-white transition-colors border border-brand-orange bg-brand-orange w-min hover:bg-white hover:text-brand-orange">Telegram</button>
+                                <a href="{{$info->whatsapp}}"
+                                    class="block px-4 py-2 font-normal text-white transition-colors border border-brand-orange bg-brand-orange w-min hover:bg-white hover:text-brand-orange">WhatsApp</a>
+                                <a href="{{$info->telegram_group}}"
+                                    class="block px-4 py-2 font-normal text-white transition-colors border border-brand-orange bg-brand-orange w-min hover:bg-white hover:text-brand-orange">Telegram</a>
                             </div>
                             <h3 class="font-bold text-black text-md">Татьяна Князева</h3>
                             <h3 class="font-bold text-black text-md">Узнать подробности об онлайн-обучении в МПЛ12:</h3>
@@ -94,6 +94,6 @@
 
         @endif
 
-        <x-user.footer :phones="$phones" />
+        <x-user.footer :phones="$phones" :info="$info" />
     </div>
 </x-user-layout>

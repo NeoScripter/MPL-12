@@ -1,4 +1,4 @@
-@props(['phones'])
+@props(['phones', 'info'])
 
 <footer class="mt-8 text-white bg-black-800 md:mt-12">
 
@@ -24,19 +24,19 @@
         <div class="mt-10 space-y-10 basis-1/4">
             <div>
                 <h3 class="mb-2 text-xl">Наши соц. сети</h3>
-                <a href=""
+                <a href="{{$info->vk}}"
                     class="block text-white hover:underline text-md hover:text-gray-400">ВКонтакте</a>
-                <a href=""
+                <a href="{{$info->youtube}}"
                     class="block text-white hover:underline text-md hover:text-gray-400">YouTube</a>
-                <a href=""
+                <a href="{{$info->telegram_channel}}"
                     class="block text-white hover:underline text-md hover:text-gray-400">Канал в Telegram</a>
-                <a href=""
+                <a href="{{$info->telegram_group}}"
                     class="block text-white hover:underline text-md hover:text-gray-400">Открытая группа в Telegram</a>
             </div>
             <div>
                 <h3 class="mb-2 text-xl">Адрес</h3>
                 <a href=""
-                    class="block text-white hover:underline text-md hover:text-gray-400">Новая Басманная 23б с20</a>
+                    class="block text-white hover:underline text-md hover:text-gray-400">{{$info->address}}</a>
                 <a href=""
                     class="block text-white hover:underline text-md hover:text-gray-400">Как проехать</a>
                 <a href=""

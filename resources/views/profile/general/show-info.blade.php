@@ -1,33 +1,64 @@
 <section>
     <div>
         <h2 class="text-lg font-medium text-gray-900">
-            Все телефоны
+            Разделы сайта
         </h2>
     </div>
 
 
     <div class="mt-4 space-y-6">
 
-        @if (isset($phones))
-            @foreach ($phones as $phone)
-            <hr>
-            <div>
-                <div>
-                    <p class="block mb-1 font-bold text-black font-sm text-md">{{ $phone->number }}</p>
-                </div>
-                <div>
-                    <p class="block mb-1 text-gray-700 font-sm text-md">{{ $phone->email }}</p>
-                </div>
-                <div>
-                    <p class="block mb-1 text-gray-700 font-sm text-md">{!! $phone->text !!}</p>
-                </div>
+        <form action="{{ route('general.update') }}" method="POST">
+            @csrf
+            @method('PUT')
 
-                <x-user.link href="{{ route('phones.edit', $phone) }}">{{ __('Редактировать') }}</x-user.link>
+            <div class="form-group">
+                <label class="block text-sm font-medium text-gray-700" for="menu_names">Разделы меню</label>
+                @php
+                    $menuNames = json_decode($info->menu_names, true);
+                    $menuNames = array_pad($menuNames, 10, '');
+                @endphp
+
+                @foreach($menuNames as $index => $menuName)
+                    <div class="mb-2 input-group">
+                        <input type="text" name="menu_names[]" class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500" value="{{ $menuName }}" placeholder="Menu Name {{ $index + 1 }}" required>
+                    </div>
+                @endforeach
             </div>
-            @endforeach
-        @else
-            <p class="no-courses-message">Нет ни одного телефона</p>
-        @endif
+
+            <!-- Address -->
+            <div class="mb-3">
+                <x-form-field name="address" label="Адрес" :value="$info->address" />
+            </div>
+
+            <!-- WhatsApp -->
+            <div class="mb-3">
+                <x-form-field name="whatsapp" label="WhatsApp" :value="$info->whatsapp" />
+            </div>
+
+            <!-- YouTube -->
+            <div class="mb-3">
+                <x-form-field name="youtube" label="YouTube" :value="$info->youtube" />
+            </div>
+
+            <!-- VK -->
+            <div class="mb-3">
+                <x-form-field name="vk" label="VK" :value="$info->vk" />
+            </div>
+
+            <!-- Telegram Channel -->
+            <div class="mb-3">
+                <x-form-field name="telegram_channel" label="Группа Telegram" :value="$info->telegram_channel" />
+            </div>
+
+            <!-- Telegram Group -->
+            <div class="mb-3">
+                <x-form-field name="telegram_group" label="Telegram канал" :value="$info->telegram_group" />
+            </div>
+
+            <!-- Submit Button -->
+            <x-primary-button>Обновить данные</x-primary-button>
+        </form>
 
 
     </div>

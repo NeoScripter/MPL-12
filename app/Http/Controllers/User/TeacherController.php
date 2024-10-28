@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
+use App\Models\GeneralInfo;
 use App\Models\Phone;
 use App\Models\Teacher;
 use Illuminate\Http\Request;
@@ -21,17 +22,19 @@ class TeacherController extends Controller
     {
         $teachers = Teacher::all();
         $phones = Phone::all();
+        $info = GeneralInfo::first();
 
-        return view('teachers', compact('teachers', 'phones'));
+        return view('teachers', compact('teachers', 'phones', 'info'));
     }
 
     public function show(Teacher $teacher)
     {
         $teacher->load('articles');
         $phones = Phone::all();
+        $info = GeneralInfo::first();
         $teachersCourses = $teacher->courses->pluck('title', 'id')->toArray();
 
-        return view('show-teacher', compact('teacher', 'phones', 'teachersCourses'));
+        return view('show-teacher', compact('teacher', 'phones', 'teachersCourses', 'info'));
     }
 
     public function destroy(Teacher $teacher)
