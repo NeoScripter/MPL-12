@@ -2,7 +2,7 @@
 
     <x-user.sidebar :phones="$phones" :info="$info" />
 
-    <div>
+    <div class="pt-24 md:pt-0">
         <div
             class="grid w-10/12 gap-8 mx-auto mt-8 sm:grid-cols-auto-fit-240 xl:grid-cols-3 md:gap-12 md:mt-12 md:w-10/12">
             @if (isset($videocourses))

@@ -3,8 +3,10 @@
 use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\GeneralInfoController;
+use App\Http\Controllers\GraduateController;
 use App\Http\Controllers\PhoneController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\PsychologistController;
 use App\Http\Controllers\ScheduleController;
 use App\Http\Controllers\User\CourseController;
 use App\Http\Controllers\User\TeacherController;
@@ -33,6 +35,12 @@ Route::get('/course/{course}', [CourseController::class, 'show'])->name('dashboa
 
 Route::get('/tutors', [TeacherController::class, 'showAll'])->name('user.teachers');
 Route::get('/teacher/{teacher}', [TeacherController::class, 'show'])->name('teacher.show');
+
+Route::get('/shrinks', [PsychologistController::class, 'showAll'])->name('shrinks');
+Route::get('/shrinks/{psychologist}', [PsychologistController::class, 'show'])->name('psychologist.show');
+
+Route::get('/grads', [GraduateController::class, 'showAll'])->name('grads');
+Route::get('/grads/{graduate}', [GraduateController::class, 'show'])->name('graduate.show');
 
 Route::get('/dummy', function () {
     $phones = Phone::all();
@@ -79,6 +87,20 @@ Route::middleware('auth')->group(function () {
     Route::get('/videos/{video}', [VideoController::class, 'edit'])->name('video.edit');
     Route::post('/videos/create', [VideoController::class, 'store'])->name('video.create');
 
+    // Psychologists
+    Route::get('/psychologists', [PsychologistController::class, 'index'])->name('psychologists');
+    Route::put('/psychologists/{psychologist}', [PsychologistController::class, 'update'])->name('psychologist.update');
+    Route::delete('/psychologists/{psychologist}', [PsychologistController::class, 'destroy'])->name('psychologist.destroy');
+    Route::get('/psychologists/{psychologist}', [PsychologistController::class, 'edit'])->name('psychologist.edit');
+    Route::post('/psychologists/create', [PsychologistController::class, 'store'])->name('psychologist.create');
+
+    // Graduates
+    Route::get('/graduates', [GraduateController::class, 'index'])->name('graduates');
+    Route::put('/graduates/{graduate}', [GraduateController::class, 'update'])->name('graduate.update');
+    Route::delete('/graduates/{graduate}', [GraduateController::class, 'destroy'])->name('graduate.destroy');
+    Route::get('/graduates/{graduate}', [GraduateController::class, 'edit'])->name('graduate.edit');
+    Route::post('/graduates/create', [GraduateController::class, 'store'])->name('graduate.create');
+
     // Schedules
     Route::post('/admin/{course}/schedules', [ScheduleController::class, 'store'])->name('schedules.store');
     Route::delete('/schedules/{schedule}', [ScheduleController::class, 'destroy'])->name('schedules.destroy');
@@ -90,6 +112,7 @@ Route::middleware('auth')->group(function () {
     Route::post('/phones/create', [PhoneController::class, 'store'])->name('phones.create');
 
 
+    // Teachers
     Route::get('/teachers', [TeacherController::class, 'index'])->name('teachers');
     Route::put('/teachers/{teacher}', [TeacherController::class, 'update'])->name('teachers.update');
     Route::delete('/teachers/{teacher}', [TeacherController::class, 'destroy'])->name('teachers.destroy');

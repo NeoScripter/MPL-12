@@ -33,6 +33,16 @@
                         </x-nav-link>
                     </div>
                     <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                        <x-nav-link :href="route('psychologists')" :active="request()->routeIs('psychologists')">
+                            Психологи
+                        </x-nav-link>
+                    </div>
+                    <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                        <x-nav-link :href="route('graduates')" :active="request()->routeIs('graduates')">
+                            Выпускники
+                        </x-nav-link>
+                    </div>
+                    <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                         <x-nav-link :href="route('phones')" :active="request()->routeIs('phones')">
                             Телефоны
                         </x-nav-link>
@@ -111,6 +121,16 @@
         <div class="space-y-1">
             <x-responsive-nav-link :href="route('teachers')" :active="request()->routeIs('teachers')">
                 Преподаватели
+            </x-responsive-nav-link>
+        </div>
+        <div class="space-y-1">
+            <x-responsive-nav-link :href="route('psychologists')" :active="request()->routeIs('psychologists')">
+                Психологи
+            </x-responsive-nav-link>
+        </div>
+        <div class="space-y-1">
+            <x-responsive-nav-link :href="route('graduates')" :active="request()->routeIs('graduates')">
+                Выпускники
             </x-responsive-nav-link>
         </div>
         <div class="space-y-1">

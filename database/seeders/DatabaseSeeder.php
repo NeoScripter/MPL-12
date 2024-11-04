@@ -28,7 +28,9 @@ class DatabaseSeeder extends Seeder
             CourseTeacherSeeder::class,
             GeneralInfoSeeder::class,
             VideocourseSeeder::class,
-            VideoSeeder::class
+            VideoSeeder::class,
+            PsychologistSeeder::class,
+            GraduateSeeder::class
         ]);
     }
 }
