@@ -8,6 +8,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ScheduleController;
 use App\Http\Controllers\User\CourseController;
 use App\Http\Controllers\User\TeacherController;
+use App\Http\Controllers\VideoController;
 use App\Http\Controllers\VideocourseController;
 use App\Models\GeneralInfo;
 use App\Models\Phone;
@@ -27,12 +28,13 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [CourseController::class, 'showAll'])->name('index');
 Route::get('/videolessons', [VideocourseController::class, 'showAll'])->name('videolessons');
+Route::get('/vids', [VideoController::class, 'showAll'])->name('vids');
 Route::get('/course/{course}', [CourseController::class, 'show'])->name('dashboard.show');
 
 Route::get('/tutors', [TeacherController::class, 'showAll'])->name('user.teachers');
 Route::get('/teacher/{teacher}', [TeacherController::class, 'show'])->name('teacher.show');
 
-Route::get('/dummy', function() {
+Route::get('/dummy', function () {
     $phones = Phone::all();
     $info = GeneralInfo::first();
     return view('dummy', compact('phones', 'info'));
@@ -69,6 +71,14 @@ Route::middleware('auth')->group(function () {
     Route::get('/videocourses/{videocourse}', [VideocourseController::class, 'edit'])->name('videocourse.edit');
     Route::post('/videocourses/create', [VideocourseController::class, 'store'])->name('videocourse.create');
 
+    // Videos
+    Route::get('/videos', [VideoController::class, 'index'])->name('videos');
+    Route::put('/videos/{video}', [VideoController::class, 'update'])->name('video.update');
+
+    Route::delete('/videos/{video}', [VideoController::class, 'destroy'])->name('video.destroy');
+    Route::get('/videos/{video}', [VideoController::class, 'edit'])->name('video.edit');
+    Route::post('/videos/create', [VideoController::class, 'store'])->name('video.create');
+
     // Schedules
     Route::post('/admin/{course}/schedules', [ScheduleController::class, 'store'])->name('schedules.store');
     Route::delete('/schedules/{schedule}', [ScheduleController::class, 'destroy'])->name('schedules.destroy');
@@ -91,8 +101,7 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/general', [GeneralInfoController::class, 'edit'])->name('general');
     Route::put('/general-info/update', [GeneralInfoController::class, 'update'])->name('general.update');
-
 });
 
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';

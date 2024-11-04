@@ -27,7 +27,8 @@ class DatabaseSeeder extends Seeder
             SchedulesSeeder::class,
             CourseTeacherSeeder::class,
             GeneralInfoSeeder::class,
-            VideocourseSeeder::class
+            VideocourseSeeder::class,
+            VideoSeeder::class
         ]);
     }
 }

@@ -10,31 +10,38 @@
                     </a>
                 </div>
 
-                <!-- Navigation Links -->
-                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
-                        Курсы
-                    </x-nav-link>
-                </div>
-                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('videocourses')" :active="request()->routeIs('videocourses')">
-                        Видеокурсы
-                    </x-nav-link>
-                </div>
-                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('teachers')" :active="request()->routeIs('teachers')">
-                        Преподаватели
-                    </x-nav-link>
-                </div>
-                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('phones')" :active="request()->routeIs('phones')">
-                        Телефоны
-                    </x-nav-link>
-                </div>
-                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('general')" :active="request()->routeIs('general')">
-                        Общее
-                    </x-nav-link>
+                <div class="flex flex-wrap">
+                    <!-- Navigation Links -->
+                    <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                        <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
+                            Курсы
+                        </x-nav-link>
+                    </div>
+                    <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                        <x-nav-link :href="route('videocourses')" :active="request()->routeIs('videocourses')">
+                            Видеокурсы
+                        </x-nav-link>
+                    </div>
+                    <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                        <x-nav-link :href="route('videos')" :active="request()->routeIs('videos')">
+                            Видео
+                        </x-nav-link>
+                    </div>
+                    <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                        <x-nav-link :href="route('teachers')" :active="request()->routeIs('teachers')">
+                            Преподаватели
+                        </x-nav-link>
+                    </div>
+                    <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                        <x-nav-link :href="route('phones')" :active="request()->routeIs('phones')">
+                            Телефоны
+                        </x-nav-link>
+                    </div>
+                    <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                        <x-nav-link :href="route('general')" :active="request()->routeIs('general')">
+                            Общее
+                        </x-nav-link>
+                    </div>
                 </div>
             </div>
 
@@ -94,6 +101,11 @@
         <div class="space-y-1">
             <x-responsive-nav-link :href="route('videocourses')" :active="request()->routeIs('videocourses')">
                 Видеокурсы
+            </x-responsive-nav-link>
+        </div>
+        <div class="space-y-1">
+            <x-responsive-nav-link :href="route('videos')" :active="request()->routeIs('videos')">
+                Видео
             </x-responsive-nav-link>
         </div>
         <div class="space-y-1">
