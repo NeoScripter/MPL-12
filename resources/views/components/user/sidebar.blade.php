@@ -30,9 +30,8 @@
 
                     // Define a list of routes (keep order in sync with menuNames)
                     $routes = [
-                        'basiccourse', 'videocourses', 'softskills',
-                        'user.teachers', 'dummy', 'dummy',
-                        'index', 'dummy', 'dummy', 'dummy'
+                        'basiccourse', 'videolessons', 'softskills',
+                        'user.teachers', 'index', 'dummy', 'dummy', 'dummy'
                     ];
                 @endphp
 
@@ -60,22 +59,6 @@
             }
 
             .mail-svg:hover rect {
-                fill: #C3512F;
-            }
-        </style>
-
-        <div
-            class="container flex items-center transition-all border border-transparent focus-within:border-brand-orange focus-within:ring-1 focus-within:ring-brand-orange">
-            <input class="flex-1 w-9/12 bg-gray-100 border-none focus:outline-none focus:ring-0" type="search"
-                placeholder="Поиск...">
-            <button
-                class="flex items-center justify-center w-12 h-full cursor-pointer hover:bg-white hover:ring-2 hover:ring-brand-orange search-svg bg-brand-orange">
-                {!! file_get_contents(public_path('images/search.svg')) !!}
-            </button>
-        </div>
-
-        <style>
-            .search-svg:hover path {
                 fill: #C3512F;
             }
         </style>

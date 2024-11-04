@@ -29,15 +29,6 @@ class CourseController extends Controller
         return view('index', compact('courses', 'phones', 'info'));
     }
 
-    public function showVideoCourses()
-    {
-        $courses = Course::where('is_video', true)->latest()->paginate(9);
-        $phones = Phone::all();
-        $info = GeneralInfo::first();
-
-        return view('videocourses', compact('courses', 'phones', 'info'));
-    }
-
     public function show(Course $course)
     {
         $course->load('schedules');
@@ -78,7 +69,6 @@ class CourseController extends Controller
             'price' => 'nullable|string',
             'reviews' => 'nullable|string',
             'image' => 'nullable|image|max:1024',
-            'is_video' => 'boolean',
             'teachers' => 'nullable|array',
             'teachers.*' => 'exists:teachers,id',
         ]);
@@ -96,7 +86,6 @@ class CourseController extends Controller
             'content' => $validated['content'],
             'price' => $validated['price'],
             'reviews' => $validated['reviews'],
-            'is_video' => $validated['is_video'] ?? false,
             'image_path' => $imagePath,
         ]);
 
@@ -121,7 +110,6 @@ class CourseController extends Controller
             'price' => 'nullable|string',
             'reviews' => 'nullable|string',
             'image' => 'nullable|image|max:1024',
-            'is_video' => 'boolean',
             'teachers' => 'nullable|array',
             'teachers.*' => 'exists:teachers,id',
         ]);
@@ -143,7 +131,6 @@ class CourseController extends Controller
             'content' => $validated['content'],
             'price' => $validated['price'],
             'reviews' => $validated['reviews'],
-            'is_video' => $validated['is_video'] ?? false,
             'image_path' => $course->image_path ?? null,
         ]);
 

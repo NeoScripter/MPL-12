@@ -16,7 +16,7 @@
                 <label class="block text-sm font-medium text-gray-700" for="menu_names">Разделы меню</label>
                 @php
                     $menuNames = json_decode($info->menu_names, true);
-                    $menuNames = array_pad($menuNames, 10, '');
+                    $menuNames = array_pad($menuNames, 8, '');
                 @endphp
 
                 @foreach($menuNames as $index => $menuName)
@@ -52,7 +52,7 @@
             </div>
 
             <!-- Telegram Group -->
-            <div class="mb-3">
+            <div class="mb-6">
                 <x-form-field name="telegram_group" label="Telegram канал" :value="$info->telegram_group" />
             </div>
 

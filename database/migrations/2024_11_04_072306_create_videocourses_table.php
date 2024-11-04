@@ -11,16 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('courses', function (Blueprint $table) {
+        Schema::create('videocourses', function (Blueprint $table) {
             $table->id();
-            $table->string('image_path')->nullable();
-            $table->string('start_date');
-            $table->string('format');
-            $table->text('content')->nullable();
-            $table->text('description')->nullable();
-            $table->text('price')->nullable();
-            $table->text('reviews')->nullable();
             $table->string('title');
+            $table->string('image_path')->nullable();
+            $table->string('link')->nullable();
+            $table->text('description')->nullable();
             $table->timestamps();
         });
     }
@@ -30,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('courses');
+        Schema::dropIfExists('videocourses');
     }
 };

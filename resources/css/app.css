@@ -83,3 +83,6 @@
 .html-content p {
     margin-bottom: 0.3em;
 }
+[x-cloak] {
+    display: none !important;
+}

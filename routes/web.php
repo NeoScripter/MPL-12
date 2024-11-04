@@ -8,6 +8,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ScheduleController;
 use App\Http\Controllers\User\CourseController;
 use App\Http\Controllers\User\TeacherController;
+use App\Http\Controllers\VideocourseController;
 use App\Models\GeneralInfo;
 use App\Models\Phone;
 use Illuminate\Support\Facades\Route;
@@ -25,7 +26,7 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::get('/', [CourseController::class, 'showAll'])->name('index');
-Route::get('/videocourses', [CourseController::class, 'showVideoCourses'])->name('videocourses');
+Route::get('/videolessons', [VideocourseController::class, 'showAll'])->name('videolessons');
 Route::get('/course/{course}', [CourseController::class, 'show'])->name('dashboard.show');
 
 Route::get('/tutors', [TeacherController::class, 'showAll'])->name('user.teachers');
@@ -52,6 +53,7 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
+    // Courses
     Route::get('/admin', [CourseController::class, 'index'])->name('dashboard');
     Route::put('/admin/{course}', [CourseController::class, 'update'])->name('dashboard.update');
 
@@ -59,6 +61,15 @@ Route::middleware('auth')->group(function () {
     Route::get('/admin/{course}', [CourseController::class, 'edit'])->name('dashboard.edit');
     Route::post('/course/create', [CourseController::class, 'store'])->name('course.create');
 
+    // Videocourses
+    Route::get('/videocourses', [VideocourseController::class, 'index'])->name('videocourses');
+    Route::put('/videocourses/{videocourse}', [VideocourseController::class, 'update'])->name('videocourse.update');
+
+    Route::delete('/videocourses/{videocourse}', [VideocourseController::class, 'destroy'])->name('videocourse.destroy');
+    Route::get('/videocourses/{videocourse}', [VideocourseController::class, 'edit'])->name('videocourse.edit');
+    Route::post('/videocourses/create', [VideocourseController::class, 'store'])->name('videocourse.create');
+
+    // Schedules
     Route::post('/admin/{course}/schedules', [ScheduleController::class, 'store'])->name('schedules.store');
     Route::delete('/schedules/{schedule}', [ScheduleController::class, 'destroy'])->name('schedules.destroy');
 

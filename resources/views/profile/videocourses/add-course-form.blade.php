@@ -1,31 +1,23 @@
 <section>
     <div>
         <h2 class="text-lg font-medium text-gray-900">
-            Создать новый курс
+            Создать новый видеокурс
         </h2>
 
         <p class="mt-1 text-sm text-gray-600">
-            Введите необходимые данные для создания нового курса
+            Введите необходимые данные для создания нового видеокурса
         </p>
     </div>
 
 
-    <form method="POST" action="{{ route('course.create') }}" enctype="multipart/form-data" class="mt-4 space-y-4">
+    <form method="POST" action="{{ route('videocourse.create') }}" enctype="multipart/form-data" class="mt-4 space-y-4">
         @csrf
 
         <x-form-field name="title" label="Название курса" />
 
-        <x-form-field name="format" label="Формат курса" />
-
-        <x-form-field name="date" label="Дата начала курса" />
+        <x-form-field name="link" label="Ссылка на курс" />
 
         <x-form-field name="description" label="Описание курса" :is-textarea="true" />
-
-        <x-form-field name="content" label="Подробное содержание курса" :is-textarea="true" />
-
-        <x-form-field name="price" label="Цена курса" :is-textarea="true" />
-
-        <x-form-field name="reviews" label="Отзывы курса" :is-textarea="true" />
 
         <div>
             <p class="block mb-1 text-sm font-medium text-gray-700">Фото курса</p>
