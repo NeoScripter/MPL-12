@@ -48,23 +48,24 @@
         <div class="w-10/12 mx-auto mt-8 xl:mt-12">
             <div class="lg:flex lg:gap-8">
                 <div class="flex-1 mb-8 h-80 lg:order-2">
-                    <iframe src="https://yandex.com/map-widget/v1/-/CDhpvQyL?lang=ru_RU" width="100%" height="100%" frameborder="0"></iframe>
+                    <iframe src="https://yandex.com/map-widget/v1/-/CDhpvQyL?lang=ru_RU" width="100%" height="100%"
+                        frameborder="0"></iframe>
                 </div>
-                    <div class="flex-1 mb-8">
-                        <h3 class="mb-2 font-bold text-brand-orange">Адрес</h3>
-                        <div class="font-base">Адрес: ул Новая Басманная 23б с20.
-                            <br class="mb-2">
-                            метро Красные Ворота
-                            <br class="mb-2">
-                            Как пройти: с Новой Басманной войти в железные ворота около дома 23c1, пройти прямо, сквозь арку,
-                            дальше тоже прямо.
-                            <br class="mb-2">
-                            Не доходя до железных ворот увидите справа дверь, вам туда. Охраннику сказать что
-                            в МПЛ, он пропустит.
-                            <br class="mb-2">
-                            Навигатор может вводить в заблуждение — проход в лабораторию ТОЛЬКО с Новой Басманной улицы.
-                        </div>
+                <div class="flex-1 mb-8">
+                    <h3 class="mb-2 font-bold text-brand-orange">Адрес</h3>
+                    <div class="font-base">Адрес: ул Новая Басманная 23б с20.
+                        <br class="mb-2" />
+                        метро Красные Ворота
+                        <br class="mb-2" />
+                        Как пройти: с Новой Басманной войти в железные ворота около дома 23c1, пройти прямо, сквозь
+                        арку, дальше тоже прямо.
+                        <br class="mb-2" />
+                        Не доходя до железных ворот увидите справа дверь, вам туда. Охраннику сказать что
+                        в МПЛ, он пропустит.
+                        <br class="mb-2" />
+                        Навигатор может вводить в заблуждение — проход в лабораторию ТОЛЬКО с Новой Басманной улицы.
                     </div>
+                </div>
             </div>
             <div class="grid gap-8 grid-cols-auto-fit-150 md:gap-12">
                 @for ($i = 1; $i < 16; $i++)

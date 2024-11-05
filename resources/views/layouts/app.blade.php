@@ -11,10 +11,16 @@
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
-    <script src="https://cdn.tiny.cloud/1/0999j0ykr28inbxwato0igeubedaeo9qxb9f00mlwzt1ybl0/tinymce/7/tinymce.min.js" referrerpolicy="origin"></script>
+    <script src="https://cdn.ckeditor.com/ckeditor5/39.0.0/classic/ckeditor.js"></script>
     <script>
-        tinymce.init({
-            selector: '.wysiwyg-editor'
+        document.addEventListener("DOMContentLoaded", function() {
+            document.querySelectorAll('.wysiwyg-editor').forEach((editorElement) => {
+                ClassicEditor
+                    .create(editorElement)
+                    .catch(error => {
+                        console.error(error);
+                    });
+            });
         });
     </script>
 
