@@ -48,6 +48,10 @@ Route::get('/dummy', function () {
     return view('dummy', compact('phones', 'info'));
 })->name('dummy');
 
+Route::get('/contacts', function() {
+    return view('contacts');
+})->name('contacts');
+
 Route::get('/softskills', function () {
     return redirect('https://softskills-course.ru');
 })->name('softskills');

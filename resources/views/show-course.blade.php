@@ -1,6 +1,6 @@
 <x-user-layout>
 
-    <x-user.sidebar :phones="$phones" :info="$info" />
+    @include('partials.sidebar')
 
     @if (session('status') === 'error')
     <script>
@@ -94,6 +94,6 @@
 
         @endif
 
-        <x-user.footer :phones="$phones" :info="$info" />
+        @include('partials.footer')
     </div>
 </x-user-layout>

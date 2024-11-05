@@ -23,18 +23,14 @@ class CourseController extends Controller
     public function showAll()
     {
         $courses = Course::latest()->paginate(9);
-        $phones = Phone::all();
-        $info = GeneralInfo::first();
 
-        return view('index', compact('courses', 'phones', 'info'));
+        return view('index', compact('courses'));
     }
 
     public function show(Course $course)
     {
         $course->load('schedules');
-        $phones = Phone::all();
-        $info = GeneralInfo::first();
-        return view('show-course', compact('course', 'phones', 'info'));
+        return view('show-course', compact('course'));
     }
 
     public function destroy(Course $course)

@@ -1,6 +1,6 @@
 <x-user-layout>
 
-    <x-user.sidebar :phones="$phones" :info="$info" />
+    @include('partials.sidebar')
 
     <div class="pt-24 md:pt-0">
         <div
@@ -31,7 +31,7 @@
             @endif
         </div>
 
-        <x-user.footer :phones="$phones" :info="$info" />
+        @include('partials.footer')
     </div>
 </x-user-layout>
 

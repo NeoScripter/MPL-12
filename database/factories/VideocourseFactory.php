@@ -11,6 +11,7 @@ use Illuminate\Support\Str;
  */
 class VideocourseFactory extends Factory
 {
+    protected $model = Videocourse::class;
     /**
      * Define the model's default state.
      *

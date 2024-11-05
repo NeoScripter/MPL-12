@@ -21,20 +21,16 @@ class TeacherController extends Controller
     public function showAll()
     {
         $teachers = Teacher::all();
-        $phones = Phone::all();
-        $info = GeneralInfo::first();
 
-        return view('teachers', compact('teachers', 'phones', 'info'));
+        return view('teachers', compact('teachers'));
     }
 
     public function show(Teacher $teacher)
     {
         $teacher->load('articles');
-        $phones = Phone::all();
-        $info = GeneralInfo::first();
         $teachersCourses = $teacher->courses->pluck('title', 'id')->toArray();
 
-        return view('show-teacher', compact('teacher', 'phones', 'teachersCourses', 'info'));
+        return view('show-teacher', compact('teacher', 'teachersCourses'));
     }
 
     public function destroy(Teacher $teacher)
