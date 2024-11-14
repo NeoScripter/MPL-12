@@ -19,18 +19,18 @@ class DatabaseSeeder extends Seeder
         //     'email' => 'test@example.com',
         // ]);
         $this->call([
-            CoursesTableSeeder::class,
+            /* CoursesTableSeeder::class,
             PhonesTableSeeder::class,
             TeachersTableSeeder::class,
-            TeachersArticleSeeder::class,
+            TeachersArticleSeeder::class, */
             UserSeeder::class,
-            SchedulesSeeder::class,
+           /*  SchedulesSeeder::class,
             CourseTeacherSeeder::class,
             GeneralInfoSeeder::class,
             VideocourseSeeder::class,
             VideoSeeder::class,
             PsychologistSeeder::class,
-            GraduateSeeder::class
+            GraduateSeeder::class */
         ]);
     }
 }
