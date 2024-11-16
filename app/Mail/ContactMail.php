@@ -10,18 +10,19 @@ use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Mail\Mailables\Address;
 
+
 class ContactMail extends Mailable
 {
     use Queueable, SerializesModels;
 
-    public $emailData;
+    public $formData;
 
     /**
      * Create a new message instance.
      */
-    public function __construct($emailData)
+    public function __construct($formData)
     {
-        $this->emailData = $emailData;
+        $this->formData = $formData;
     }
 
     /**
@@ -29,10 +30,9 @@ class ContactMail extends Mailable
      */
     public function envelope(): Envelope
     {
-
         return new Envelope(
-            from: new Address('hello@example.com', 'Московская Психологическая Лаборатория 12'),
-            subject: 'Запись на курс'
+            subject: 'Запись на курс',
+            from: new Address(config('mail.from.address'), config('mail.from.name')),
         );
     }
 
@@ -43,19 +43,9 @@ class ContactMail extends Mailable
     {
         return new Content(
             view: 'emails.contact',
-            with: ['emailData' => $this->emailData]
-
+            with: ['formData' => $this->formData],
         );
     }
-
-    public function prepareForSending($message)
-    {
-        // Ensure UTF-8 headers for the message
-        $headers = $message->getHeaders();
-        $headers->addTextHeader('Content-Type', 'text/html; charset=UTF-8');
-        $headers->addTextHeader('Content-Transfer-Encoding', '8bit');
-    }
-
 
     /**
      * Get the attachments for the message.

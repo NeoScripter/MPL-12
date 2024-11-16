@@ -13,16 +13,35 @@ use Illuminate\Support\Facades\Storage;
 class CourseController extends Controller
 {
 
-    public function index()
+/*     public function index()
     {
         $courses = Course::latest()->paginate(5);
+
+        return view('profile.courses.dashboard', compact('courses'));
+    }
+ */
+    public function index($search = null)
+    {
+        // Get the base query for courses with teachers
+        $courses = Course::latest();
+
+        // Apply search filter if a search term is provided
+        if ($search) {
+            $courses->where(function ($query) use ($search) {
+                $query->where('title', 'like', "%{$search}%")
+                      ->orWhere('description', 'like', "%{$search}%");
+            });
+        }
+
+        // Paginate the results
+        $courses = $courses->paginate(6);
 
         return view('profile.courses.dashboard', compact('courses'));
     }
 
     public function showAll()
     {
-        $courses = Course::latest()->paginate(9);
+        $courses = Course::with('teachers')->latest()->paginate(9);
 
         return view('index', compact('courses'));
     }

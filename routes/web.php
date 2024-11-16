@@ -68,7 +68,12 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
     // Courses
-    Route::get('/admin', [CourseController::class, 'index'])->name('dashboard');
+ /*    Route::get('/admin', [CourseController::class, 'index'])->name('dashboard'); */
+
+    Route::get('/admin/{search?}', [CourseController::class, 'index'])
+    ->where('search', '.*')
+    ->name('dashboard');
+
     Route::put('/admin/{course}', [CourseController::class, 'update'])->name('dashboard.update');
 
     Route::delete('/admin/{course}', [CourseController::class, 'destroy'])->name('dashboard.destroy');

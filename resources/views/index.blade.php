@@ -65,10 +65,7 @@
                             <span class="font-normal text-gray-500 text-md">{{ $course->start_date }}
                             </span>
                             <h4 class="italic">Ведущие:</h4>
-                            <p class="italic text-brand-orange">Александр Мусихин, Алексей Андреев-Чадаев, Арман
-                                Бекенов, Дмитрий Шаповалов, Ирина Андреева-Чадаева, Марианна Шипицына, Наталья
-                                Белова, Юлия
-                                Зотова</p>
+                            <p class="italic text-brand-orange">{{ $course->teachers->pluck('name')->implode(', ') }}</p>
                             <h4 class="italic">Формат: {{ $course->format }}</h4>
                             <div class="space-y-1 prose text-gray-400 max-w-none">
                                 {!! $course->description !!}

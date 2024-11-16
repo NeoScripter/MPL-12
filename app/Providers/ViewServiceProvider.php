@@ -31,5 +31,10 @@ class ViewServiceProvider extends ServiceProvider
             $view->with('phones', Phone::all());
             $view->with('info', GeneralInfo::first());
         });
+
+        View::composer('show-course', function ($view) {
+            $view->with('phones', Phone::all());
+            $view->with('info', GeneralInfo::first());
+        });
     }
 }
