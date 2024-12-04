@@ -57,12 +57,12 @@
                         <a href="{{ route('dashboard.show', $course->id) }}"
                             class="relative block overflow-hidden after:inset-0 after:z-20 after:bg-white after:opacity-0 after:absolute after:hover:opacity-70 after:transition-opacity">
                             <img class="object-cover object-center w-full h-full"
-                                src="{{ Storage::url($course->image_path) }}" alt="">
+                                src="{{ Storage::url($course->image_path) }}" alt="Фотография курса">
                         </a>
                         <h3 class="w-10/12 mx-auto my-2 text-xl font-bold text-center md:text-2xl text-brand-orange">
                             {{ $course->title }}</h3>
                         <div class="grid gap-1 py-3 border-t border-b border-gray-300">
-                            <span class="font-normal text-gray-500 text-md">{{ $course->start_date }}
+                            <span class="font-normal text-gray-500 text-md">{{ $course->start_date->translatedFormat('j F Y') . ' года' }}
                             </span>
                             <h4 class="italic">Ведущие:</h4>
                             <p class="italic text-brand-orange">{{ $course->teachers->pluck('name')->implode(', ') }}</p>

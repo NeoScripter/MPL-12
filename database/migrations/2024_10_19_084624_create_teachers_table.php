@@ -15,6 +15,10 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('main_image_path')->nullable();
+            $table->string('whatsapp');
+            $table->string('telegram');
+            $table->string('email');
+            $table->string('category');
             $table->string('secondary_image_path')->nullable();
             $table->text('quote');
             $table->text('education');

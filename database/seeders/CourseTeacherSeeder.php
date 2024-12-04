@@ -18,7 +18,7 @@ class CourseTeacherSeeder extends Seeder
         $teachers = Teacher::all();
 
         foreach ($courses as $course) {
-            $randomTeachers = $teachers->random($teachers->count() / 2);
+            $randomTeachers = $teachers->random(7);
 
             $course->teachers()->attach($randomTeachers);
         }

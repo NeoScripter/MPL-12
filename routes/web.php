@@ -48,7 +48,7 @@ Route::get('/dummy', function () {
     return view('dummy', compact('phones', 'info'));
 })->name('dummy');
 
-Route::get('/contacts', function() {
+Route::get('/contacts', function () {
     return view('contacts');
 })->name('contacts');
 
@@ -68,17 +68,17 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
     // Courses
- /*    Route::get('/admin', [CourseController::class, 'index'])->name('dashboard'); */
+    /*    Route::get('/admin', [CourseController::class, 'index'])->name('dashboard'); */
+
+    Route::put('/admin/course/{course}', [CourseController::class, 'update'])->name('dashboard.update');
+
+    Route::delete('/admin/course/{course}', [CourseController::class, 'destroy'])->name('dashboard.destroy');
+    Route::get('/admin/course/{course}', [CourseController::class, 'edit'])->name('dashboard.edit');
+    Route::post('/course/create', [CourseController::class, 'store'])->name('course.create');
 
     Route::get('/admin/{search?}', [CourseController::class, 'index'])
-    ->where('search', '.*')
-    ->name('dashboard');
-
-    Route::put('/admin/{course}', [CourseController::class, 'update'])->name('dashboard.update');
-
-    Route::delete('/admin/{course}', [CourseController::class, 'destroy'])->name('dashboard.destroy');
-    Route::get('/admin/{course}', [CourseController::class, 'edit'])->name('dashboard.edit');
-    Route::post('/course/create', [CourseController::class, 'store'])->name('course.create');
+        ->where('search', '.*')
+        ->name('dashboard');
 
     // Videocourses
     Route::get('/videocourses', [VideocourseController::class, 'index'])->name('videocourses');

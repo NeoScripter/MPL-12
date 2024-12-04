@@ -17,7 +17,9 @@
 
         <x-form-field name="format" label="Формат курса" />
 
-        <x-form-field name="date" label="Дата начала курса" />
+        <x-form-field name="date" type="date" label="Дата начала курса" />
+
+        <x-form-field name="time" label="Время начала курса" />
 
         <x-form-field name="description" label="Описание курса" :is-textarea="true" />
 

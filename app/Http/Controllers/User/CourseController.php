@@ -22,10 +22,8 @@ class CourseController extends Controller
  */
     public function index($search = null)
     {
-        // Get the base query for courses with teachers
         $courses = Course::latest();
 
-        // Apply search filter if a search term is provided
         if ($search) {
             $courses->where(function ($query) use ($search) {
                 $query->where('title', 'like', "%{$search}%")
@@ -33,7 +31,6 @@ class CourseController extends Controller
             });
         }
 
-        // Paginate the results
         $courses = $courses->paginate(6);
 
         return view('profile.courses.dashboard', compact('courses'));
@@ -41,10 +38,14 @@ class CourseController extends Controller
 
     public function showAll()
     {
-        $courses = Course::with('teachers')->latest()->paginate(9);
+        $courses = Course::select(['id', 'image_path', 'start_date', 'start_time', 'format', 'content', 'title'])
+        ->with('teachers')
+        ->latest()
+        ->paginate(9);
 
         return view('index', compact('courses'));
     }
+
 
     public function show(Course $course)
     {
@@ -79,8 +80,9 @@ class CourseController extends Controller
             'title' => 'required|string|max:255',
             'format' => 'required|string|max:255',
             'date' => 'required|string',
+            'time' => 'required|string',
             'description' => 'nullable|string',
-            'content' => 'nullable|string|max:10000',
+            'content' => 'nullable|string|max:60000',
             'price' => 'nullable|string',
             'reviews' => 'nullable|string',
             'image' => 'nullable|image|max:1024',
@@ -97,6 +99,7 @@ class CourseController extends Controller
             'title' => $validated['title'],
             'format' => $validated['format'],
             'start_date' => $validated['date'],
+            'start_time' => $validated['time'],
             'description' => $validated['description'],
             'content' => $validated['content'],
             'price' => $validated['price'],
@@ -120,8 +123,9 @@ class CourseController extends Controller
             'title' => 'required|string|max:255',
             'format' => 'required|string|max:255',
             'date' => 'required|string',
+            'time' => 'required|string',
             'description' => 'nullable|string',
-            'content' => 'nullable|string|max:10000',
+            'content' => 'nullable|string|max:60000',
             'price' => 'nullable|string',
             'reviews' => 'nullable|string',
             'image' => 'nullable|image|max:1024',
@@ -142,6 +146,7 @@ class CourseController extends Controller
             'title' => $validated['title'],
             'format' => $validated['format'],
             'start_date' => $validated['date'],
+            'start_time' => $validated['time'],
             'description' => $validated['description'],
             'content' => $validated['content'],
             'price' => $validated['price'],

@@ -37,7 +37,7 @@
                             <p class="block mb-1 font-bold text-black font-sm text-md">{{ $course->title }}</p>
                         </div>
                         <div>
-                            <p class="block mb-1 text-gray-700 font-sm text-md">{{ $course->start_date }}</p>
+                            <p class="block mb-1 text-gray-700 font-sm text-md">{{ $course->start_date->translatedFormat('j F Y') . ' года' }}</p>
                         </div>
                         @if ($course->image_path)
                             <div>

@@ -20,4 +20,8 @@ class Course extends Model
     {
         return $this->hasMany(Schedule::class);
     }
+
+    protected $casts = [
+        'start_date' => 'datetime',
+    ];
 }

@@ -14,7 +14,8 @@ return new class extends Migration
         Schema::create('courses', function (Blueprint $table) {
             $table->id();
             $table->string('image_path')->nullable();
-            $table->string('start_date');
+            $table->date('start_date');
+            $table->string('start_time');
             $table->string('format');
             $table->text('content')->nullable();
             $table->text('description')->nullable();

@@ -21,7 +21,7 @@
                     <h1 class="text-2xl text-center text-black uppercase md:w-3/4 xl:mx-auto xl:mb-8 xl:text-4xl">
                         {{ $course->title }}</h1>
                     <div class="gap-6 xl:flex">
-                        <p class="text-gray-500 xl:flex-1 xl:text-3xl xl:text-right">{{ $course->start_date }}</p>
+                        <p class="text-gray-500 xl:flex-1 xl:text-3xl xl:text-right">{{ $course->start_date->translatedFormat('j F Y') . ' года, ' . $course->start_time }}</p>
                         <div class="xl:flex-1">
                             <p class="italic text-brand-orange"><span
                                     class="text-gray-500">Ведущие: </span>{{ $course->teachers->pluck('name')->map(fn($name) => strtoupper($name))->implode(', ') }}
