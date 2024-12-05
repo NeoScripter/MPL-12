@@ -12,23 +12,12 @@
 
             <x-form-field name="title" label="Название курса" :value="$course->title" />
 
-            {{--  <x-form-field name="format" label="Формат курса" :value="$course->format" /> --}}
-
-            @php
-                $options = [
-                    '1 вечер очно',
-                    '1 встреча раз в месяц, очно',
-                    '1 и 7 семинар очно по выходным с 11 до 19, со 2го по 6й семинары – онлайн',
-                    '1 раз в две недели с 19:30 до 23:00, очно',
-                ];
-            @endphp
-
-            <x-select-field name="format" label="Формат курса" :options="$options" placeholder="Формат курса"
+            <x-select-field name="format" label="Формат курса" :options="$courseFormats ?? []" placeholder="Формат курса"
                 :value="$course->format" />
 
-            <x-form-field name="date" type="date" label="Дата начала курса" :value="$course->start_date->format('Y-m-d')" />
+            <x-form-field class="w-60" name="date" type="date" label="Дата начала курса" :value="$course->start_date->format('Y-m-d')" />
 
-            <x-form-field name="time" label="Время начала курса" :value="$course->start_time" />
+            <x-form-field class="w-60" name="time" label="Время начала курса" :value="$course->start_time" />
 
             <x-form-field name="description" label="Описание курса" :is-textarea="true" :value="$course->description" />
 

@@ -1,4 +1,6 @@
-<div>
+@props(['class' => ''])
+
+<div class="{{ $class }}">
     <x-input-label :for="$name" :value="$label" />
 
     @if ($isTextarea)

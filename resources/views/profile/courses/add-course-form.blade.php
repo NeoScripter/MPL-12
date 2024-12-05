@@ -15,11 +15,11 @@
 
         <x-form-field name="title" label="Название курса" />
 
-        <x-form-field name="format" label="Формат курса" />
+        <x-select-field name="format" label="Формат курса" :options="$courseFormats ?? []" placeholder="Формат курса" />
 
-        <x-form-field name="date" type="date" label="Дата начала курса" />
+        <x-form-field class="w-60" name="date" type="date" label="Дата начала курса" />
 
-        <x-form-field name="time" label="Время начала курса" />
+        <x-form-field class="w-60" name="time" label="Время начала курса" />
 
         <x-form-field name="description" label="Описание курса" :is-textarea="true" />
 

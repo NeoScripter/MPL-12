@@ -27,6 +27,8 @@ class GeneralInfoController extends Controller
             'vk' => 'required|string|max:255',
             'telegram_channel' => 'required|string|max:255',
             'telegram_group' => 'required|string|max:255',
+            'format' => 'nullable|array',
+            'format.*' => 'required|string|max:255',
         ]);
 
         $info = GeneralInfo::first();

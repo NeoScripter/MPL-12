@@ -33,7 +33,9 @@ class CourseController extends Controller
 
         $courses = $courses->paginate(6);
 
-        return view('profile.courses.dashboard', compact('courses'));
+        $courseFormats = GeneralInfo::pluck('format')->first();
+
+        return view('profile.courses.dashboard', compact('courses', 'courseFormats'));
     }
 
     public function showAll()
@@ -71,7 +73,9 @@ class CourseController extends Controller
         $course->load('schedules');
         $teachers = Teacher::all();
         $courseTeachers = $course->teachers->pluck('id')->toArray();
-        return view('profile.courses.edit-course', compact('course', 'teachers', 'courseTeachers'));
+        $courseFormats = GeneralInfo::pluck('format')->first();
+
+        return view('profile.courses.edit-course', compact('course', 'teachers', 'courseTeachers', 'courseFormats'));
     }
 
     public function store(Request $request)
@@ -80,7 +84,7 @@ class CourseController extends Controller
             'title' => 'required|string|max:255',
             'format' => 'required|string|max:255',
             'date' => 'required|string',
-            'time' => 'required|string',
+            'time' => 'required|string|date_format:H:i',
             'description' => 'nullable|string',
             'content' => 'nullable|string|max:60000',
             'price' => 'nullable|string',
@@ -123,7 +127,7 @@ class CourseController extends Controller
             'title' => 'required|string|max:255',
             'format' => 'required|string|max:255',
             'date' => 'required|string',
-            'time' => 'required|string',
+            'time' => 'required|string|date_format:H:i',
             'description' => 'nullable|string',
             'content' => 'nullable|string|max:60000',
             'price' => 'nullable|string',

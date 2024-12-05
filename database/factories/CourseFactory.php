@@ -98,7 +98,7 @@ class CourseFactory extends Factory
             ->map(fn($path) => 'courses/' . basename($path))
             ->random(),
             'start_date' => fake()->date(),
-            'start_time' => fake()->time(),
+            'start_time' => fake()->time('H:i'),
             'format' => 'Очно',
             'description' => 'Авторский курс содержит только самую важную, по нашему мнению, информацию, необходимую для эффективной работы психолога-консультанта. Основная составляющая курса – практическое применение полученных знаний и навыков.',
             'content' => $description,
