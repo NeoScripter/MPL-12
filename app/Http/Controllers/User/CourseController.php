@@ -22,7 +22,7 @@ class CourseController extends Controller
  */
     public function index($search = null)
     {
-        $courses = Course::latest();
+        $courses = Course::latest()->with('supervisingTeacher');
 
         if ($search) {
             $courses->where(function ($query) use ($search) {
@@ -44,6 +44,7 @@ class CourseController extends Controller
         ->with('teachers')
         ->latest()
         ->paginate(9);
+
 
         return view('index', compact('courses'));
     }
@@ -92,6 +93,7 @@ class CourseController extends Controller
             'image' => 'nullable|image|max:1024',
             'teachers' => 'nullable|array',
             'teachers.*' => 'exists:teachers,id',
+            'supervisingTeacher' => 'nullable|integer|exists:teachers,id',
         ]);
 
         $imagePath = null;
@@ -115,6 +117,10 @@ class CourseController extends Controller
             $course->teachers()->attach($validated['teachers']);
         }
 
+        if (!empty($validated['supervisingTeacher'])) {
+            Teacher::find($validated['supervisingTeacher'])->update(['supervised_course_id' => $course->id]);
+        }
+
         return redirect()->route('dashboard')->with([
             'status' => 'success',
             'message' => 'Курс успешно создан!',
@@ -135,6 +141,7 @@ class CourseController extends Controller
             'image' => 'nullable|image|max:1024',
             'teachers' => 'nullable|array',
             'teachers.*' => 'exists:teachers,id',
+            'supervisingTeacher' => 'nullable|integer|exists:teachers,id',
         ]);
 
         if ($request->hasFile('image')) {
@@ -159,6 +166,15 @@ class CourseController extends Controller
         ]);
 
         $course->teachers()->sync($validated['teachers'] ?? []);
+
+        if (isset($validated['supervisingTeacher'])) {
+            $oldSupervisor = Teacher::where('supervised_course_id', $course->id)->first();
+            if ($oldSupervisor) {
+                $oldSupervisor->update(['supervised_course_id' => null]);
+            }
+
+            Teacher::find($validated['supervisingTeacher'])->update(['supervised_course_id' => $course->id]);
+        }
 
         return redirect()->route('dashboard')->with([
             'status' => 'success',

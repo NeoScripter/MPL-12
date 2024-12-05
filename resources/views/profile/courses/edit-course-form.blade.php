@@ -15,6 +15,9 @@
             <x-select-field name="format" label="Формат курса" :options="$courseFormats ?? []" placeholder="Формат курса"
                 :value="$course->format" />
 
+            <x-select-field name="supervisingTeacher" label="Куратор" :options="$teachers->pluck('id')->toArray() ?? []" :optionNames="$teachers->pluck('name')->toArray() ?? []" placeholder="Куратор курса"
+                :value="$course->supervisingTeacher->id ?? null" />
+
             <x-form-field class="w-60" name="date" type="date" label="Дата начала курса" :value="$course->start_date->format('Y-m-d')" />
 
             <x-form-field class="w-60" name="time" label="Время начала курса" :value="$course->start_time" />

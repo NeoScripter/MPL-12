@@ -32,7 +32,7 @@ class GeneralInfoSeeder extends Seeder
                 'vk' => 'https://vk.com/mpl12',
                 'telegram_channel' => 'https://t.me/mpl_12',
                 'telegram_group' => 'https://t.me/mpl_12',
-                'format' => json_encode([
+                'format' => [
                     '1 вечер очно',
                     '1 встреча раз в месяц, очно',
                     '1 и 7 семинар очно по выходным с 11 до 19, со 2го по 6й семинары – онлайн',
@@ -80,7 +80,7 @@ class GeneralInfoSeeder extends Seeder
                     'Собеседование',
                     'Суббота и воскресенье с 11:00 до 18:00',
                     'Суббота и воскресенье с 11:00 до 19:00',
-                ]),
+                ],
             ]);
         }
     }

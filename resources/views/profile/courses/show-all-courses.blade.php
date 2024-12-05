@@ -37,7 +37,8 @@
                             <p class="block mb-1 font-bold text-black font-sm text-md">{{ $course->title }}</p>
                         </div>
                         <div>
-                            <p class="block mb-1 text-gray-700 font-sm text-md">{{ $course->start_date->translatedFormat('j F Y') . ' года' }}</p>
+                            <p class="block mb-1 text-gray-700 font-sm text-md">
+                                {{ $course->start_date->translatedFormat('j F Y') . ' года' }}</p>
                         </div>
                         @if ($course->image_path)
                             <div>
@@ -47,6 +48,18 @@
                                 </figure>
                             </div>
                         @endif
+
+                        <div class="my-2">
+                            <p class="block max-w-xl text-lg font-normal text-black font-sm">Категория:
+                                {{ ucfirst($course->category) }}</p>
+                        </div>
+
+                        @isset($course->supervisingTeacher)
+                            <div class="my-2">
+                                <p class="block max-w-xl text-lg font-normal text-black font-sm">Куратор:
+                                    {{ $course->supervisingTeacher->name }}</p>
+                            </div>
+                        @endisset
 
                         <div>
                             <p class="block max-w-xl font-normal text-black font-sm text-md">{!! $course->description !!}</p>

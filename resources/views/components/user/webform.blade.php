@@ -1,5 +1,10 @@
+@props(['recipient_email' => ''])
+
 <form id="webform" action="{{ route('send.email') }}" method="POST">
     @csrf
+
+    <input type="hidden" name="recipient_email" value="{{$recipient_email}}">
+
     <div class="mb-3">
         <label for="first_name"
             class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Имя</label>

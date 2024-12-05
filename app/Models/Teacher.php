@@ -20,4 +20,10 @@ class Teacher extends Model
     {
         return $this->hasMany(Article::class);
     }
+
+    public function supervisedCourse()
+    {
+        return $this->belongsTo(Course::class, 'supervised_course_id');
+    }
+
 }

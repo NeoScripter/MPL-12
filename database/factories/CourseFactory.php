@@ -92,6 +92,7 @@ class CourseFactory extends Factory
         Там есть то, что не так часто встречается в других местах: постоянная практика, этичность, увлеченные профессионалы, любовь к психологии и дружеская поддержка...</p>
         ';
 
+        $faker = \Faker\Factory::create('ru_RU');
 
         return [
             'image_path' => collect(glob(storage_path('app/public/courses/*.*')))
@@ -99,10 +100,11 @@ class CourseFactory extends Factory
             ->random(),
             'start_date' => fake()->date(),
             'start_time' => fake()->time('H:i'),
+            'category' =>  $this->faker->randomElement(['Для специалистов и студентов', 'Тренинги', 'Подросткам и родителям', 'Супервизии']),
             'format' => 'Очно',
             'description' => 'Авторский курс содержит только самую важную, по нашему мнению, информацию, необходимую для эффективной работы психолога-консультанта. Основная составляющая курса – практическое применение полученных знаний и навыков.',
             'content' => $description,
-            'title' => fake()->sentence(),
+            'title' => $faker->sentence(),
             'price' => $price,
             'reviews' => $reviews,
             'created_at' => now(),

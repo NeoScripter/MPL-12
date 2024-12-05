@@ -63,6 +63,11 @@ class TeacherController extends Controller
             'education' => 'required|string|max:10000',
             'main_image' => 'nullable|image|max:1024',
             'secondary_image' => 'nullable|image|max:1024',
+            'whatsapp' => 'required|string|max:255',
+            'telegram' => 'required|string|max:255',
+            'email' => 'required|email|max:255|unique:teachers,email',
+            'phone' => 'required|string|max:255',
+            'category' => 'required|string|max:255',
         ]);
 
         $mainImagePath = null;
@@ -81,6 +86,11 @@ class TeacherController extends Controller
             'education' => $validated['education'],
             'main_image_path' => $mainImagePath,
             'secondary_image_path' => $secondaryImagePath,
+            'whatsapp' => $validated['whatsapp'],
+            'telegram' => $validated['telegram'],
+            'email' => $validated['email'],
+            'phone' => $validated['phone'],
+            'category' => $validated['category'],
         ]);
 
         return redirect()->route('teachers')->with([
@@ -97,6 +107,11 @@ class TeacherController extends Controller
             'education' => 'required|string|max:10000',
             'main_image' => 'nullable|image|max:1024',
             'secondary_image' => 'nullable|image|max:1024',
+            'whatsapp' => 'required|string|max:255',
+            'telegram' => 'required|string|max:255',
+            'email' => 'required|email|max:255|unique:teachers,email,' . $teacher->id,
+            'phone' => 'required|string|max:255',
+            'category' => 'required|string|max:255',
         ]);
 
         if ($request->hasFile('main_image')) {
@@ -123,6 +138,11 @@ class TeacherController extends Controller
             'education' => $validated['education'],
             'main_image_path' => $teacher->main_image_path ?? null,
             'secondary_image_path' => $teacher->secondary_image_path ?? null,
+            'whatsapp' => $validated['whatsapp'],
+            'telegram' => $validated['telegram'],
+            'email' => $validated['email'],
+            'phone' => $validated['phone'],
+            'category' => $validated['category'],
         ]);
 
 

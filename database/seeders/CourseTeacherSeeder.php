@@ -21,6 +21,8 @@ class CourseTeacherSeeder extends Seeder
             $randomTeachers = $teachers->random(7);
 
             $course->teachers()->attach($randomTeachers);
+            $supervisingTeacher = $teachers->random(1)->first();
+            $supervisingTeacher->update(['supervised_course_id' => $course->id]);
         }
     }
 }

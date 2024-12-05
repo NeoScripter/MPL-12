@@ -17,6 +17,7 @@ class ContactController extends Controller
             'phone' => 'required|string|max:20',
             'email' => 'required|email',
             'privacy_policy' => 'accepted',
+            'recipient_email' => 'required|string|max:40',
         ]);
 
         if ($validator->fails()) {
@@ -29,8 +30,10 @@ class ContactController extends Controller
 
         $emailData = $request->only('first_name', 'last_name', 'phone', 'email');
 
+        $recipientEmail = $validator['recipient_email'];
+
         try {
-            Mail::to('admin@example.com')->send(new ContactMail($emailData));
+            Mail::to($recipientEmail)->send(new ContactMail($emailData));
 
             // Set session status to 'success'
             return redirect()->back()->with([

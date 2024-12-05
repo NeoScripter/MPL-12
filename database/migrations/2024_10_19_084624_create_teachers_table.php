@@ -18,10 +18,13 @@ return new class extends Migration
             $table->string('whatsapp');
             $table->string('telegram');
             $table->string('email');
+            $table->string('phone');
             $table->string('category');
             $table->string('secondary_image_path')->nullable();
             $table->text('quote');
             $table->text('education');
+            $table->foreignId('supervised_course_id')->nullable()->constrained('courses')->cascadeOnDelete();;
+
             $table->timestamps();
         });
     }

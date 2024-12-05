@@ -17,6 +17,7 @@ return new class extends Migration
             $table->date('start_date');
             $table->string('start_time');
             $table->string('format');
+            $table->string('category');
             $table->text('content')->nullable();
             $table->text('description')->nullable();
             $table->text('price')->nullable();

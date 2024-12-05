@@ -21,6 +21,11 @@ class Course extends Model
         return $this->hasMany(Schedule::class);
     }
 
+    public function supervisingTeacher()
+    {
+        return $this->hasOne(Teacher::class, 'supervised_course_id');
+    }
+
     protected $casts = [
         'start_date' => 'datetime',
     ];
