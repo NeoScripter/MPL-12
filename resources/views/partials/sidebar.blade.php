@@ -30,8 +30,7 @@
 
                     // Define a list of routes (keep order in sync with menuNames)
                     $routes = [
-                        'basiccourse', 'videolessons', 'softskills',
-                        'user.teachers', 'contacts', 'index', 'shrinks', 'grads', 'vids'
+                        'basiccourse', 'softskills', 'specialists', 'training', 'index', 'supervisions', 'videolessons', 'consultants', 'graduates', 'vids', 'contacts'
                     ];
                 @endphp
 

@@ -12,8 +12,10 @@ use App\Http\Controllers\User\CourseController;
 use App\Http\Controllers\User\TeacherController;
 use App\Http\Controllers\VideoController;
 use App\Http\Controllers\VideocourseController;
+use App\Models\Course;
 use App\Models\GeneralInfo;
 use App\Models\Phone;
+use App\Models\Teacher;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -29,18 +31,48 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::get('/', [CourseController::class, 'showAll'])->name('index');
+
+Route::get('/specialists', function () {
+    $courses = Course::where('category', '=', 'Для специалистов и студентов')
+    ->with('teachers')
+    ->latest()
+    ->paginate(9);
+
+    return view('index', compact('courses'));
+})->name('specialists');
+
+Route::get('/training', function () {
+    $courses = Course::where('category', '=', 'Тренинги')
+    ->with('teachers')
+    ->latest()
+    ->paginate(9);
+
+    return view('index', compact('courses'));
+})->name('training');
+
 Route::get('/videolessons', [VideocourseController::class, 'showAll'])->name('videolessons');
 Route::get('/vids', [VideoController::class, 'showAll'])->name('vids');
 Route::get('/course/{course}', [CourseController::class, 'show'])->name('dashboard.show');
 
-Route::get('/tutors', [TeacherController::class, 'showAll'])->name('user.teachers');
+Route::get('/supervisions', function () {
+    $teachers = Teacher::where('category', '=', 'Супервизор')->get();
+
+    return view('teachers', compact('teachers'));
+})->name('supervisions');
+
+Route::get('/consultants', function () {
+    $teachers = Teacher::where('category', '=', 'Консультант')->get();
+
+    return view('teachers', compact('teachers'));
+})->name('consultants');
+
+Route::get('/graduates', function () {
+    $teachers = Teacher::where('category', '=', 'Выпускник')->get();
+
+    return view('teachers', compact('teachers'));
+})->name('graduates');
+
 Route::get('/teacher/{teacher}', [TeacherController::class, 'show'])->name('teacher.show');
-
-Route::get('/shrinks', [PsychologistController::class, 'showAll'])->name('shrinks');
-Route::get('/shrinks/{psychologist}', [PsychologistController::class, 'show'])->name('psychologist.show');
-
-Route::get('/grads', [GraduateController::class, 'showAll'])->name('grads');
-Route::get('/grads/{graduate}', [GraduateController::class, 'show'])->name('graduate.show');
 
 Route::get('/dummy', function () {
     $phones = Phone::all();
@@ -95,20 +127,6 @@ Route::middleware('auth')->group(function () {
     Route::delete('/videos/{video}', [VideoController::class, 'destroy'])->name('video.destroy');
     Route::get('/videos/{video}', [VideoController::class, 'edit'])->name('video.edit');
     Route::post('/videos/create', [VideoController::class, 'store'])->name('video.create');
-
-    // Psychologists
-    Route::get('/psychologists', [PsychologistController::class, 'index'])->name('psychologists');
-    Route::put('/psychologists/{psychologist}', [PsychologistController::class, 'update'])->name('psychologist.update');
-    Route::delete('/psychologists/{psychologist}', [PsychologistController::class, 'destroy'])->name('psychologist.destroy');
-    Route::get('/psychologists/{psychologist}', [PsychologistController::class, 'edit'])->name('psychologist.edit');
-    Route::post('/psychologists/create', [PsychologistController::class, 'store'])->name('psychologist.create');
-
-    // Graduates
-    Route::get('/graduates', [GraduateController::class, 'index'])->name('graduates');
-    Route::put('/graduates/{graduate}', [GraduateController::class, 'update'])->name('graduate.update');
-    Route::delete('/graduates/{graduate}', [GraduateController::class, 'destroy'])->name('graduate.destroy');
-    Route::get('/graduates/{graduate}', [GraduateController::class, 'edit'])->name('graduate.edit');
-    Route::post('/graduates/create', [GraduateController::class, 'store'])->name('graduate.create');
 
     // Schedules
     Route::post('/admin/{course}/schedules', [ScheduleController::class, 'store'])->name('schedules.store');

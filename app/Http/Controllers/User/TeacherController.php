@@ -67,7 +67,7 @@ class TeacherController extends Controller
             'telegram' => 'required|string|max:255',
             'email' => 'required|email|max:255|unique:teachers,email',
             'phone' => 'required|string|max:255',
-            'category' => 'required|string|max:255',
+            'category' => 'nullable|string|max:255',
         ]);
 
         $mainImagePath = null;
@@ -111,8 +111,10 @@ class TeacherController extends Controller
             'telegram' => 'required|string|max:255',
             'email' => 'required|email|max:255|unique:teachers,email,' . $teacher->id,
             'phone' => 'required|string|max:255',
-            'category' => 'required|string|max:255',
+            'category' => 'nullable|string|max:255',
         ]);
+
+
 
         if ($request->hasFile('main_image')) {
             if ($teacher->main_image_path) {

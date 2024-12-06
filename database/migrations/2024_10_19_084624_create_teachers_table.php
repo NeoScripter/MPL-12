@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('telegram');
             $table->string('email');
             $table->string('phone');
-            $table->string('category');
+            $table->string('category')->nullable();
             $table->string('secondary_image_path')->nullable();
             $table->text('quote');
             $table->text('education');

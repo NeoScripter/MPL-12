@@ -4,13 +4,13 @@
 
     <div class="px-4">
         <div class="pt-20 my-8 md:flex md:pt-0 md:gap-10">
-            <div class="flex-1 max-w-5xl">
+            {{-- <div class="flex-1 max-w-5xl">
                 <p class="text-gray-400">
                     Для того чтобы договориться о индивидуальной супервизии, вы можете позвонить по телефону или
                     отправить нам сообщение. Пожалуйста, указывайте в сообщении ваш контактный номер телефона.
                 </p>
                 <p class="mt-2 font-bold text-brand-orange">Телефон: +7(968)930-29-01, Анастасия</p>
-            </div>
+            </div> --}}
         </div>
         <div class="relative 3xl:[columns:6] xl:[columns:5] lg:[columns:3] 2sm:[columns:2] [column-gap:0]">
             @if (isset($teachers))

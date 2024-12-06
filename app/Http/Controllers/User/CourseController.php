@@ -41,10 +41,10 @@ class CourseController extends Controller
     public function showAll()
     {
         $courses = Course::select(['id', 'image_path', 'start_date', 'start_time', 'format', 'content', 'title'])
+        ->where('category', '=', 'Подросткам и родителям')
         ->with('teachers')
         ->latest()
         ->paginate(9);
-
 
         return view('index', compact('courses'));
     }
@@ -84,6 +84,7 @@ class CourseController extends Controller
         $validated = $request->validate([
             'title' => 'required|string|max:255',
             'format' => 'required|string|max:255',
+            'category' => 'nullable|string',
             'date' => 'required|string',
             'time' => 'required|string|date_format:H:i',
             'description' => 'nullable|string',
@@ -104,6 +105,7 @@ class CourseController extends Controller
         $course = Course::create([
             'title' => $validated['title'],
             'format' => $validated['format'],
+            'category' => $validated['category'],
             'start_date' => $validated['date'],
             'start_time' => $validated['time'],
             'description' => $validated['description'],
@@ -131,6 +133,7 @@ class CourseController extends Controller
     {
         $validated = $request->validate([
             'title' => 'required|string|max:255',
+            'category' => 'nullable|string',
             'format' => 'required|string|max:255',
             'date' => 'required|string',
             'time' => 'required|string|date_format:H:i',
@@ -156,6 +159,7 @@ class CourseController extends Controller
         $course->update([
             'title' => $validated['title'],
             'format' => $validated['format'],
+            'category' => $validated['category'],
             'start_date' => $validated['date'],
             'start_time' => $validated['time'],
             'description' => $validated['description'],

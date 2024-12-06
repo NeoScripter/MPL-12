@@ -24,6 +24,11 @@
                         </div>
                     @endif
 
+                    <div class="my-2">
+                        <p class="block max-w-xl text-lg font-normal text-black font-sm">Категория:
+                            {{ ucfirst($teacher->category) }}</p>
+                    </div>
+
                     <x-user.link href="{{ route('teachers.edit', $teacher) }}">{{ __('Редактировать') }}</x-user.link>
                 </div>
             @endforeach

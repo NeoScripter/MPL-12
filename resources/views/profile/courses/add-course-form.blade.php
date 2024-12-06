@@ -10,10 +10,12 @@
     </div>
 
 
-    <form method="POST" action="{{ route('course.create') }}" enctype="multipart/form-data" class="mt-4 space-y-4">
+    <form method="POST" action="{{ route('course.create') }}" enctype="multipart/form-data" class="mt-4 space-y-4 create-course-form">
         @csrf
 
         <x-form-field name="title" label="Название курса" />
+
+        <x-select-field name="category" label="Категория курса" :options="['Для специалистов и студентов', 'Тренинги', 'Подросткам и родителям']" placeholder="Категория курса" />
 
         <x-select-field name="format" label="Формат курса" :options="$courseFormats ?? []" placeholder="Формат курса" />
 
@@ -42,7 +44,19 @@
         <div class="flex items-center gap-4">
             <x-primary-button>{{ __('Создать') }}</x-primary-button>
 
+            @if ($errors->any())
 
+            <script>
+                window.addEventListener('load', () => {
+                    const errorMessages = document.querySelector('.create-course-form');
+                    if (errorMessages) {
+                        errorMessages.scrollIntoView({
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            </script>
+        @endif
         </div>
     </form>
 

@@ -13,7 +13,19 @@
 
             <x-form-field name="name" label="Имя преподавателя" :value="$teacher->name" />
 
-            <x-form-field name="education" label="Подробное описание преподавателя" :is-textarea="true" :value="$teacher->education" />
+            <x-select-field name="category" label="Категория преподавателя" :options="['Супервизор', 'Консультант', 'Выпускник']"
+                placeholder="Категория преподавателя" :value="$teacher->category" />
+
+            <x-form-field name="whatsapp" label="Whatsapp преподавателя" :value="$teacher->whatsapp" />
+
+            <x-form-field name="telegram" label="Telegram преподавателя" :value="$teacher->telegram" />
+
+            <x-form-field name="email" type="email" label="Email преподавателя" :value="$teacher->email" />
+
+            <x-form-field name="phone" label="Телефон преподавателя" :value="$teacher->phone" />
+
+            <x-form-field name="education" label="Подробное описание преподавателя" :is-textarea="true"
+                :value="$teacher->education" />
 
             <x-form-field name="quote" label="Цитата на основной странице" :is-textarea="true" :value="$teacher->quote" />
 

@@ -16,7 +16,7 @@
                 <label class="block text-sm font-medium text-gray-700" for="menu_names">Разделы меню</label>
                 @php
                     $menuNames = json_decode($info->menu_names, true);
-                    $menuNames = array_pad($menuNames, 9, '');
+                    $menuNames = array_pad($menuNames, 11, '');
                 @endphp
 
                 @foreach ($menuNames as $index => $menuName)

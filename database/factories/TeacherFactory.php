@@ -56,7 +56,7 @@ class TeacherFactory extends Factory
             'telegram' => fake()->phoneNumber(),
             'email' => fake()->unique()->safeEmail(),
             'phone' => fake()->phoneNumber(),
-            'category' =>  $this->faker->randomElement(['teacher', 'psychologist', 'graduate']),
+            'category' =>  $this->faker->randomElement(['Супервизор', 'Консультант', 'Выпускник']),
             'education' => $education,
             'created_at' => now(),
             'updated_at' => now(),

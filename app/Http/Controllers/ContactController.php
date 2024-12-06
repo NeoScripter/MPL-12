@@ -30,7 +30,7 @@ class ContactController extends Controller
 
         $emailData = $request->only('first_name', 'last_name', 'phone', 'email');
 
-        $recipientEmail = $validator['recipient_email'];
+        $recipientEmail = $validator['recipient_email'] ?? 'admin@mospsylab.ru';
 
         try {
             Mail::to($recipientEmail)->send(new ContactMail($emailData));

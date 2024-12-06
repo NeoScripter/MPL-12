@@ -12,11 +12,13 @@
 
             <x-form-field name="title" label="Название курса" :value="$course->title" />
 
+            <x-select-field name="category" label="Категория курса" :options="['Для специалистов и студентов', 'Тренинги', 'Подросткам и родителям']" placeholder="Категория курса" :value="$course->category" />
+
             <x-select-field name="format" label="Формат курса" :options="$courseFormats ?? []" placeholder="Формат курса"
                 :value="$course->format" />
 
-            <x-select-field name="supervisingTeacher" label="Куратор" :options="$teachers->pluck('id')->toArray() ?? []" :optionNames="$teachers->pluck('name')->toArray() ?? []" placeholder="Куратор курса"
-                :value="$course->supervisingTeacher->id ?? null" />
+            <x-select-field name="supervisingTeacher" label="Куратор" :options="$teachers->pluck('id')->toArray() ?? []" :optionNames="$teachers->pluck('name')->toArray() ?? []"
+                placeholder="Куратор курса" :value="$course->supervisingTeacher->id ?? null" />
 
             <x-form-field class="w-60" name="date" type="date" label="Дата начала курса" :value="$course->start_date->format('Y-m-d')" />
 
