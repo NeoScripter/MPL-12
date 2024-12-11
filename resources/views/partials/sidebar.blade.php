@@ -30,13 +30,19 @@
 
                     // Define a list of routes (keep order in sync with menuNames)
                     $routes = [
-                        'basiccourse', 'softskills', 'specialists', 'training', 'index', 'supervisions', 'videolessons', 'consultants', 'graduates', 'vids', 'contacts'
+                        'event-schedule', 'basiccourse', 'basicoffline', 'softskills', 'specialists', 'training', 'index', 'supervisions', 'videolessons', 'consultants', 'graduates', 'vids', 'contacts'
                     ];
                 @endphp
 
                 <!-- Iterate over menu names and combine with routes -->
                 @foreach ($menuNames as $index => $menuName)
                     @php
+                        if (!$info->show_offline_course && $routes[$index] === 'basicoffline') {
+                            continue;
+                        }
+                        if (!$info->show_schedule && $routes[$index] === 'event-schedule') {
+                            continue;
+                        }
                         // Check if the route exists at the current index
                         $route = $routes[$index] ?? 'dummy'; // Default to 'dummy' if index doesn't exist
                     @endphp

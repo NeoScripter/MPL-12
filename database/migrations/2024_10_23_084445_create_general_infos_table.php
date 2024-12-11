@@ -20,6 +20,8 @@ return new class extends Migration
             $table->string('vk');
             $table->string('telegram_channel');
             $table->string('telegram_group');
+            $table->boolean('show_offline_course')->default(false);
+            $table->boolean('show_schedule')->default(false);
             $table->json('format')->nullable();
             $table->timestamps();
         });

@@ -7,9 +7,9 @@
 </head>
 <body>
     <h1>Запись на курс</h1>
-    <p><strong>Имя:</strong> {{ $emailData['first_name'] }}</p>
-    <p><strong>Фамилия:</strong> {{ $emailData['last_name'] }}</p>
-    <p><strong>Телефон:</strong> {{ $emailData['phone'] }}</p>
-    <p><strong>Email:</strong> {{ $emailData['email'] }}</p>
+    <p><strong>Имя:</strong> {{ $formData['first_name'] }}</p>
+    <p><strong>Фамилия:</strong> {{ $formData['last_name'] }}</p>
+    <p><strong>Телефон:</strong> {{ $formData['phone'] }}</p>
+    <p><strong>Email:</strong> {{ $formData['email'] }}</p>
 </body>
 </html>

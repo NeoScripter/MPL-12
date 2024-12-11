@@ -22,7 +22,7 @@ class CourseController extends Controller
  */
     public function index($search = null)
     {
-        $courses = Course::latest()->with('supervisingTeacher');
+        $courses = Course::orderBy('start_date', 'asc')->with('supervisingTeacher');
 
         if ($search) {
             $courses->where(function ($query) use ($search) {
@@ -43,7 +43,7 @@ class CourseController extends Controller
         $courses = Course::select(['id', 'image_path', 'start_date', 'start_time', 'format', 'content', 'title'])
         ->where('category', '=', 'Подросткам и родителям')
         ->with('teachers')
-        ->latest()
+        ->orderBy('start_date', 'asc')
         ->paginate(9);
 
         return view('index', compact('courses'));

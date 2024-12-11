@@ -21,6 +21,8 @@ class GeneralInfoController extends Controller
         $validated = $request->validate([
             'menu_names' => 'required|array',
             'menu_names.*' => 'required|string|max:255',
+            'show_offline_course' => 'boolean',
+            'show_schedule' => 'boolean',
             'address' => 'required|string|max:255',
             'whatsapp' => 'required|string|max:255',
             'youtube' => 'required|string|max:255',
@@ -32,6 +34,10 @@ class GeneralInfoController extends Controller
         ]);
 
         $info = GeneralInfo::first();
+
+        $validated['show_offline_course'] = $request->boolean('show_offline_course');
+        $validated['show_schedule'] = $request->boolean('show_schedule');
+
         $info->update($validated);
 
         return redirect()->route('general')->with([

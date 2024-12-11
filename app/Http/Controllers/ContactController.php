@@ -11,26 +11,20 @@ class ContactController extends Controller
 {
     public function sendEmail(Request $request)
     {
-        $validator = Validator::make($request->all(), [
+        $validated = $request->validate([
             'first_name' => 'required|string|max:255',
             'last_name' => 'required|string|max:255',
             'phone' => 'required|string|max:20',
             'email' => 'required|email',
             'privacy_policy' => 'accepted',
-            'recipient_email' => 'required|string|max:40',
+            'recipient_email' => 'nullable|email',
         ]);
-
-        if ($validator->fails()) {
-            return redirect()->back()
-                ->withErrors($validator)
-                ->with([
-                    'status' => 'error'
-                ]);
-        }
-
+    
+        // Collect form data for the email
         $emailData = $request->only('first_name', 'last_name', 'phone', 'email');
-
-        $recipientEmail = $validator['recipient_email'] ?? 'admin@mospsylab.ru';
+    
+        // Determine recipient email with a fallback to a default
+        $recipientEmail = $validated['recipient_email'] ?? 'default@example.com';
 
         try {
             Mail::to($recipientEmail)->send(new ContactMail($emailData));

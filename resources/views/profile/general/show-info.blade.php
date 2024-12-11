@@ -16,7 +16,7 @@
                 <label class="block text-sm font-medium text-gray-700" for="menu_names">Разделы меню</label>
                 @php
                     $menuNames = json_decode($info->menu_names, true);
-                    $menuNames = array_pad($menuNames, 11, '');
+                    $menuNames = array_pad($menuNames, 12, '');
                 @endphp
 
                 @foreach ($menuNames as $index => $menuName)
@@ -27,6 +27,14 @@
                     </div>
                 @endforeach
             </div>
+
+            <x-user.checkbox name="show_schedule" :checked="old('show_schedule', $info->show_schedule ?? false)">
+                Показывать страницу с расписаниями в меню
+            </x-user.checkbox>
+
+            <x-user.checkbox name="show_offline_course" :checked="old('show_offline_course', $info->show_offline_course ?? false)">
+                Показывать базовый очный курс в меню
+            </x-user.checkbox>
 
             <!-- Address -->
             <div class="mb-3">

@@ -35,7 +35,7 @@ Route::get('/', [CourseController::class, 'showAll'])->name('index');
 Route::get('/specialists', function () {
     $courses = Course::where('category', '=', 'Для специалистов и студентов')
     ->with('teachers')
-    ->latest()
+    ->orderBy('start_date', 'asc')
     ->paginate(9);
 
     return view('index', compact('courses'));
@@ -44,7 +44,7 @@ Route::get('/specialists', function () {
 Route::get('/training', function () {
     $courses = Course::where('category', '=', 'Тренинги')
     ->with('teachers')
-    ->latest()
+    ->orderBy('start_date', 'asc')
     ->paginate(9);
 
     return view('index', compact('courses'));
@@ -88,9 +88,21 @@ Route::get('/softskills', function () {
     return redirect('https://softskills-course.ru');
 })->name('softskills');
 
+Route::get('/event-schedule', function () {
+    $phones = Phone::all();
+    $info = GeneralInfo::first();
+    return view('dummy', compact('phones', 'info'));
+})->name('event-schedule');
+
 Route::get('/basiccourse', function () {
     return redirect('https://online.mpl12.institute');
 })->name('basiccourse');
+
+Route::get('/basiccourse-offline', function () {
+    $phones = Phone::all();
+    $info = GeneralInfo::first();
+    return view('dummy', compact('phones', 'info'));
+})->name('basicoffline');
 
 Route::post('/send-email', [ContactController::class, 'sendEmail'])->name('send.email');
 

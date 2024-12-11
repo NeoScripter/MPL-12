@@ -13,8 +13,7 @@
 
             <x-form-field name="name" label="Имя преподавателя" :value="$teacher->name" />
 
-            <x-select-field name="category" label="Категория преподавателя" :options="['Супервизор', 'Консультант', 'Выпускник']"
-                placeholder="Категория преподавателя" :value="$teacher->category" />
+            <x-select-field name="category" label="Категория преподавателя" :options="['Супервизор', 'Консультант', 'Выпускник']"placeholder="Категория преподавателя" :value="$teacher->category" />
 
             <x-form-field name="whatsapp" label="Whatsapp преподавателя" :value="$teacher->whatsapp" />
 
