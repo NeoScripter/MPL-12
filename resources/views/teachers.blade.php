@@ -4,13 +4,7 @@
 
     <div class="px-4">
         <div class="pt-20 my-8 md:flex md:pt-0 md:gap-10">
-            {{-- <div class="flex-1 max-w-5xl">
-                <p class="text-gray-400">
-                    Для того чтобы договориться о индивидуальной супервизии, вы можете позвонить по телефону или
-                    отправить нам сообщение. Пожалуйста, указывайте в сообщении ваш контактный номер телефона.
-                </p>
-                <p class="mt-2 font-bold text-brand-orange">Телефон: +7(968)930-29-01, Анастасия</p>
-            </div> --}}
+
         </div>
         <div class="relative 3xl:[columns:6] xl:[columns:5] lg:[columns:3] 2sm:[columns:2] [column-gap:0]">
             @if (isset($teachers))
@@ -20,7 +14,7 @@
                             <div
                                 class="relative block overflow-hidden after:inset-0 after:z-20 after:bg-white after:opacity-20 after:absolute after:hover:opacity-0 after:transition-opacity group">
                                 <img class="object-cover object-center w-full h-full transition-transform duration-500 group-hover:scale-110"
-                                    src="{{ Storage::url($teacher->main_image_path) }}" alt="">
+                                    src="{{ Storage::url($teacher->main_image_path) }}" alt="{{ $teacher->name }}">
                             </div>
                         @else
                             <a href="{{ route('teacher.show', $teacher->id) }}" class="block break-inside-avoid">
@@ -36,22 +30,6 @@
                 @endforeach
             @endif
         </div>
-
-        <style>
-            .grid-m {
-                --columns: 6;
-                display: column;
-                columns: var(--columns);
-            }
-
-            .grid-m>* {
-                break-inside: avoid;
-            }
-
-            .featured {
-                grid-column: span 2;
-            }
-        </style>
 
         @include('partials.footer')
     </div>

@@ -116,20 +116,31 @@ class TeacherController extends Controller
 
 
 
-        if ($request->hasFile('main_image')) {
+        if ($request->input('main_image_is_null') === 'true') {
+            // If the image is marked as null, delete it
             if ($teacher->main_image_path) {
                 Storage::disk('public')->delete($teacher->main_image_path);
             }
-
+            $teacher->main_image_path = null;
+        } elseif ($request->hasFile('main_image')) {
+            // If a new image is uploaded, replace the old one
+            if ($teacher->main_image_path) {
+                Storage::disk('public')->delete($teacher->main_image_path);
+            }
             $imagePath = $request->file('main_image')->store('images', 'public');
             $teacher->main_image_path = $imagePath;
         }
 
-        if ($request->hasFile('secondary_image')) {
+        // Similar logic for secondary_image
+        if ($request->input('secondary_image_is_null') === 'true') {
             if ($teacher->secondary_image_path) {
                 Storage::disk('public')->delete($teacher->secondary_image_path);
             }
-
+            $teacher->secondary_image_path = null;
+        } elseif ($request->hasFile('secondary_image')) {
+            if ($teacher->secondary_image_path) {
+                Storage::disk('public')->delete($teacher->secondary_image_path);
+            }
             $imagePath = $request->file('secondary_image')->store('images', 'public');
             $teacher->secondary_image_path = $imagePath;
         }

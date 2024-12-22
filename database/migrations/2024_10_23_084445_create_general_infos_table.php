@@ -23,6 +23,10 @@ return new class extends Migration
             $table->boolean('show_offline_course')->default(false);
             $table->boolean('show_schedule')->default(false);
             $table->json('format')->nullable();
+            $table->string('banner_title');
+            $table->string('banner_subtitle');
+            $table->string('banner_btn_text');
+            $table->string('banner_image')->nullable();
             $table->timestamps();
         });
     }

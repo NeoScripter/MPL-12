@@ -80,11 +80,15 @@ class VideocourseController extends Controller
             'image' => 'nullable|image|max:1024',
         ]);
 
-        if ($request->hasFile('image')) {
+        if ($request->input('image_is_null') === 'true') {
             if ($videocourse->image_path) {
                 Storage::disk('public')->delete($videocourse->image_path);
             }
-
+            $videocourse->image_path = null;
+        } elseif ($request->hasFile('image')) {
+            if ($videocourse->image_path) {
+                Storage::disk('public')->delete($videocourse->image_path);
+            }
             $imagePath = $request->file('image')->store('images', 'public');
             $videocourse->image_path = $imagePath;
         }

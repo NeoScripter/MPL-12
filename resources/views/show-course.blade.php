@@ -38,7 +38,7 @@
                     </div>
                 </div>
                 <div class="relative block mx-auto overflow-hidden md:h-130 lg:w-3/4">
-                    <img class="object-cover object-center w-full h-full" src="{{ Storage::url($course->image_path) }}"
+                    <img class="object-contain object-center w-full h-full" src="{{ Storage::url($course->image_path) }}"
                         alt="">
                 </div>
                 <div class="lg:flex">
@@ -73,7 +73,7 @@
                         <div class="grid">
                             @foreach ($course->schedules as $schedule)
                                 <div class="p-2 text-sm border border-gray-300 even:bg-gray-100 even:text-gray-500">
-                                    {{ $schedule->content }}
+                                    {!! $schedule->content !!}
                                 </div>
                             @endforeach
                         </div>
@@ -82,11 +82,11 @@
 
                         <div
                             class="hidden px-4 py-2 text-base font-medium text-center text-white uppercase transition-opacity lg:text-xl md:block bg-brand-orange">
-                            Запись по контактам в анонсе курса</div>
+                            ОСТАВИТЬ ЗАЯВКУ НА КУРС</div>
 
                         <hr class="my-4">
 
-                        <x-user.webform :recipient_email="$course->supervisingTeacher->email" />
+                        <x-user.webform :recipient_email="$course->supervisingTeacher->email ?? 'admin@bespokewebsites.ru'" />
 
                     </div>
                 </div>

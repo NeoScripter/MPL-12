@@ -45,6 +45,18 @@
         <main>
             {{ $slot }}
         </main>
+
+        @if ($errors->any())
+            <script>
+                document.addEventListener('DOMContentLoaded', () => {
+                    document.querySelector('.text-red-600').scrollIntoView({
+                        behavior: 'smooth',
+                        inline: 'center',
+                        block: 'center'
+                    });
+                })
+            </script>
+        @endif
     </div>
 </body>
 

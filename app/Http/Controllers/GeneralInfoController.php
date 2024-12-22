@@ -31,6 +31,10 @@ class GeneralInfoController extends Controller
             'telegram_group' => 'required|string|max:255',
             'format' => 'nullable|array',
             'format.*' => 'required|string|max:255',
+            'banner_title' => 'required|string|max:255',
+            'banner_subtitle' => 'required|string|max:255',
+            'banner_btn_text' => 'required|string|max:70',
+            'banner_image' => 'nullable|image|max:1024',
         ]);
 
         $info = GeneralInfo::first();

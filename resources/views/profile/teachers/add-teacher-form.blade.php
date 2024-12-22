@@ -18,8 +18,7 @@
             <x-input-error class="mt-2" :messages="$errors->get('name')" />
         </div>
 
-        <x-select-field name="category" label="Категория преподавателя" :options="['Супервизор', 'Консультант', 'Выпускник']"
-            placeholder="Категория преподавателя" />
+        <x-select-field name="category" label="Категория преподавателя" :options="['Супервизор', 'Консультант', 'Выпускник']" placeholder="Категория преподавателя" />
 
         <x-form-field name="whatsapp" label="Whatsapp преподавателя" />
 
@@ -64,19 +63,6 @@
         <div class="flex items-center gap-4">
             <x-primary-button>{{ __('Создать') }}</x-primary-button>
 
-            @if ($errors->any())
-
-                <script>
-                    window.addEventListener('load', () => {
-                        const errorMessages = document.querySelector('.create-teacher-form');
-                        if (errorMessages) {
-                            errorMessages.scrollIntoView({
-                                behavior: 'smooth'
-                            });
-                        }
-                    });
-                </script>
-            @endif
         </div>
     </form>
 

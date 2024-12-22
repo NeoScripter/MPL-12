@@ -42,6 +42,7 @@ class CourseController extends Controller
     {
         $courses = Course::select(['id', 'image_path', 'start_date', 'start_time', 'format', 'content', 'title'])
         ->where('category', '=', 'Подросткам и родителям')
+        ->where('show_course', true)
         ->with('teachers')
         ->orderBy('start_date', 'asc')
         ->paginate(9);
@@ -95,12 +96,15 @@ class CourseController extends Controller
             'teachers' => 'nullable|array',
             'teachers.*' => 'exists:teachers,id',
             'supervisingTeacher' => 'nullable|integer|exists:teachers,id',
+            'show_course' => 'boolean',
         ]);
 
         $imagePath = null;
         if ($request->hasFile('image')) {
             $imagePath = $request->file('image')->store('images', 'public');
         }
+
+        $validated['show_course'] = $request->has('show_course') ? $request->boolean('show_course') : false;
 
         $course = Course::create([
             'title' => $validated['title'],
@@ -113,6 +117,7 @@ class CourseController extends Controller
             'price' => $validated['price'],
             'reviews' => $validated['reviews'],
             'image_path' => $imagePath,
+            'show_course' => $validated['show_course'],
         ]);
 
         if (!empty($validated['teachers'])) {
@@ -145,16 +150,24 @@ class CourseController extends Controller
             'teachers' => 'nullable|array',
             'teachers.*' => 'exists:teachers,id',
             'supervisingTeacher' => 'nullable|integer|exists:teachers,id',
+            'show_course' => 'boolean',
         ]);
 
-        if ($request->hasFile('image')) {
+        if ($request->input('image_is_null') === 'true') {
             if ($course->image_path) {
                 Storage::disk('public')->delete($course->image_path);
             }
-
+            $course->image_path = null;
+        } elseif ($request->hasFile('image')) {
+            if ($course->image_path) {
+                Storage::disk('public')->delete($course->image_path);
+            }
             $imagePath = $request->file('image')->store('images', 'public');
             $course->image_path = $imagePath;
         }
+
+        $validated['show_course'] = $request->has('show_course') ? $request->boolean('show_course') : false;
+
 
         $course->update([
             'title' => $validated['title'],
@@ -167,6 +180,7 @@ class CourseController extends Controller
             'price' => $validated['price'],
             'reviews' => $validated['reviews'],
             'image_path' => $course->image_path ?? null,
+            'show_course' => $validated['show_course'],
         ]);
 
         $course->teachers()->sync($validated['teachers'] ?? []);

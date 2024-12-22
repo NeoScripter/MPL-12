@@ -22,6 +22,7 @@ return new class extends Migration
             $table->text('description')->nullable();
             $table->text('price')->nullable();
             $table->text('reviews')->nullable();
+            $table->boolean('show_course')->default(true);
             $table->string('title');
             $table->timestamps();
         });

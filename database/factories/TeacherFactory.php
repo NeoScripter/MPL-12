@@ -50,7 +50,9 @@ class TeacherFactory extends Factory
             'main_image_path' => collect(glob(storage_path('app/public/teachers/*.*')))
                 ->map(fn($path) => 'teachers/' . basename($path))
                 ->random(),
-            'secondary_image_path' => fake()->imageUrl(640, 480, 'people'),
+            'secondary_image_path' => collect(glob(storage_path('app/public/teachers/*.*')))
+            ->map(fn($path) => 'teachers/' . basename($path))
+            ->random(),
             'quote' => $quote,
             'whatsapp' => fake()->phoneNumber(),
             'telegram' => fake()->phoneNumber(),

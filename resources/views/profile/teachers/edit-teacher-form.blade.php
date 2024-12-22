@@ -13,7 +13,7 @@
 
             <x-form-field name="name" label="Имя преподавателя" :value="$teacher->name" />
 
-            <x-select-field name="category" label="Категория преподавателя" :options="['Супервизор', 'Консультант', 'Выпускник']"placeholder="Категория преподавателя" :value="$teacher->category" />
+            <x-select-field name="category" label="Категория преподавателя" :options="['Супервизор', 'Консультант', 'Выпускник']" placeholder="Категория преподавателя" :value="$teacher->category" />
 
             <x-form-field name="whatsapp" label="Whatsapp преподавателя" :value="$teacher->whatsapp" />
 
@@ -29,12 +29,12 @@
             <x-form-field name="quote" label="Цитата на основной странице" :is-textarea="true" :value="$teacher->quote" />
 
             <x-user.image-upload label="Главное фото преподавателя" :image-path="$teacher->main_image_path" alt-text="Главное фото"
-                new-label="Новое фото" input-id="main_image" input-name="main_image" />
+                input-id="main_image" input-name="main_image" />
 
             <x-user.image-upload label="Второе фото преподавателя" :image-path="$teacher->secondary_image_path" alt-text="Второе фото"
-                new-label="Новое фото" input-id="secondary_image" input-name="secondary_image" />
+                input-id="secondary_image" input-name="secondary_image" />
 
-            <div class="flex items-center gap-4">
+            <div class="flex items-center gap-4 mt-6">
                 <x-primary-button>{{ __('Сохранить изменения') }}</x-primary-button>
 
                 <x-danger-button x-data=""
@@ -89,7 +89,8 @@
             </div>
         </div>
 
-        <div class="space-y-1">
+        <form class="mt-4 space-y-1" id="add-article-form" action="{{ route('article.store', $teacher->id) }}" method="POST">
+            @csrf
             <p class="block mt-6 mb-2 text-sm font-medium text-gray-700">Добавить статью</p>
             <hr>
             <div class="space-y-2">
@@ -107,17 +108,13 @@
                     <x-input-error class="mt-2" :messages="$errors->get('articleLink')" />
                 </div>
 
-                <x-primary-button type="submit" form="add-article-form mt-1">
+                <x-primary-button type="submit" form="add-article-form" class="mt-1">
                     {{ __('Добавить') }}
                 </x-primary-button>
             </div>
-        </div>
+        </form>
 
     </section>
-
-    <form id="add-article-form" action="{{ route('article.store', $teacher->id) }}" method="POST">
-        @csrf
-    </form>
 
     <x-modal name="confirm-teacher-deletion" :show="$errors->userDeletion->isNotEmpty()" focusable>
         <form method="post" action="{{ route('teachers.destroy', $teacher) }}" class="p-6">

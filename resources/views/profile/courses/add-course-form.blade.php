@@ -33,6 +33,7 @@
 
         <div>
             <p class="block mb-1 text-sm font-medium text-gray-700">Фото курса</p>
+            <p class="block mb-1 text-sm font-medium text-gray-700">(горизонтальное фото соотношением 2 : 1)</p>
             <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="image">Новое
                 фото</label>
             <input

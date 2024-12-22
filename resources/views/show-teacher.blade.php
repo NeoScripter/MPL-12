@@ -9,7 +9,7 @@
                     @if ($teacher->main_image_path)
                         <div class="overflow-hidden lg:w-60 lg:flex-none">
                             <img class="object-cover object-top w-full h-full"
-                                src="{{ Storage::url($teacher->main_image_path) }}" alt="">
+                                src="{{ Storage::url($teacher->main_image_path) }}" alt="{{ $teacher->name }}">
                         </div>
                     @endif
                     <h3 class="flex-1 block my-2 text-3xl font-normal md:flex-none 2sm:text-5xl lg:text-6xl w-min">
@@ -20,12 +20,12 @@
                         <div class="space-y-1 prosehtml-content max-w-none">
                             {!! $teacher->quote !!}
                         </div>
-                        @if ($teacher->secondary_image_path)
-                            <div class="w-full my-4 overflow-hidden 2sm:m-4 2sm:float-right 2sm:w-52 lg:h-72 lg:w-60">
+                        @isset ($teacher->secondary_image_path)
+                            <div class="w-full my-4 overflow-hidden 2sm:m-4 2sm:float-right 2sm:w-52 lg:w-60">
                                 <img class="object-cover object-center w-full h-full"
-                                    src="{{ Storage::url($teacher->secondary_image_path) }}" alt="">
+                                    src="{{ Storage::url($teacher->secondary_image_path) }}" alt="{{ $teacher->name }}">
                             </div>
-                        @endif
+                        @endisset
                         <div class="relative mt-4 space-y-1 pros html-content max-w-none">
                             {!! $teacher->education !!}
                         </div>

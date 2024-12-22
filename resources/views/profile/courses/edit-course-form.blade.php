@@ -12,7 +12,12 @@
 
             <x-form-field name="title" label="Название курса" :value="$course->title" />
 
-            <x-select-field name="category" label="Категория курса" :options="['Для специалистов и студентов', 'Тренинги', 'Подросткам и родителям']" placeholder="Категория курса" :value="$course->category" />
+            <x-select-field name="category" label="Категория курса" :options="['Для специалистов и студентов', 'Тренинги', 'Подросткам и родителям']" placeholder="Категория курса"
+                :value="$course->category" />
+
+            <x-user.checkbox name="show_course" :checked="old('show_course', $course->show_course ?? false)">
+                Отображать страницу на сайте
+            </x-user.checkbox>
 
             <x-select-field name="format" label="Формат курса" :options="$courseFormats ?? []" placeholder="Формат курса"
                 :value="$course->format" />
@@ -53,8 +58,8 @@
                 </ul>
             </div>
 
-            <x-user.image-upload label="Фото курса" :image-path="$course->image_path" alt-text="Главное фото" new-label="Новое фото"
-                input-id="image" input-name="image" />
+            <x-user.image-upload label="Фото курса" :image-path="$course->image_path" alt-text="Главное фото"
+                new-label="(горизонтальное фото соотношением 2 : 1)" input-id="image" input-name="image" />
 
             <div class="flex items-center gap-4">
 
@@ -76,11 +81,13 @@
                                 class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
                                 <th scope="row"
                                     class="flex items-center gap-2 px-6 py-2 font-medium text-gray-900 dark:text-white text-md">
-                                    {{ $schedule->content }}
+                                    <div>
+                                        {!! $schedule->content !!}
+                                    </div>
 
                                     <!-- Delete Form -->
-                                    <form class="block ml-auto"
-                                        action="{{ route('schedules.destroy', $schedule->id) }}" method="POST">
+                                    <form class="block ml-auto" action="{{ route('schedules.destroy', $schedule->id) }}"
+                                        method="POST">
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit" class="text-xl">
@@ -105,7 +112,7 @@
             <div class="space-y-4">
                 <div>
                     <x-input-label for="schedule" :value="__('Добавить расписание')" />
-                    <x-text-input id="schedule" name="schedule" type="text" class="block w-full mt-1"
+                    <x-text-area id="schedule" name="schedule" type="text" class="block w-full mt-1 wysiwyg-editor"
                         form="add-schedule-form" />
                     <x-input-error class="mt-2" :messages="$errors->get('schedule')" />
                 </div>

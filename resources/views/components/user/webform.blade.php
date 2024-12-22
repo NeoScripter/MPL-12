@@ -1,4 +1,4 @@
-@props(['recipient_email' => ''])
+@props(['recipient_email' => 'admin@bespokewebsites.ru'])
 
 <form id="webform" action="{{ route('send.email') }}" method="POST">
     @csrf
