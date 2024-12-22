@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\GeneralInfo;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class GeneralInfoController extends Controller
 {
@@ -41,6 +42,22 @@ class GeneralInfoController extends Controller
 
         $validated['show_offline_course'] = $request->boolean('show_offline_course');
         $validated['show_schedule'] = $request->boolean('show_schedule');
+
+
+        if ($request->input('banner_image_is_null') === 'true') {
+            if ($info->banner_image) {
+                Storage::disk('public')->delete($info->banner_image);
+            }
+            $info->banner_image = null;
+        } elseif ($request->hasFile('banner_image')) {
+            if ($info->banner_image) {
+                Storage::disk('public')->delete($info->banner_image);
+            }
+            $imagePath = $request->file('banner_image')->store('images', 'public');
+            $info->banner_image = $imagePath;
+        }
+
+        $validated['banner_image'] = $info->banner_image;
 
         $info->update($validated);
 

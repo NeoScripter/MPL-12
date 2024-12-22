@@ -1,9 +1,6 @@
-@php
-    $hero_image = (isset($info) && Storage::url($info->banner_image)) ? Storage::url($info->banner_image) : '/images/hero.jpg';
-@endphp
 
 <div x-data="{ showModal: {{ session('status') === 'error' ? 'true' : 'false' }} }" x-cloak
-    class="relative bg-[url('{{ $hero_image }}')] bg-cover bg-center bg-no-repeat min-h-96 w-full pt-24 px-16">
+    class="relative w-full px-16 pt-24 bg-center bg-no-repeat bg-cover min-h-96" style="background-image: url('{{ Storage::url($info->banner_image) }}')">
     <h1 class="mb-1 text-2xl font-medium bg-white sm:text-4xl shadow-white-large max-w-max">Психологическое
         консультирование
         онлайн</h1>

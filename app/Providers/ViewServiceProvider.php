@@ -23,15 +23,16 @@ class ViewServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        $phones = Cache::remember('phones', 60, function () {
-            return Phone::all();
-        });
+        $phones = Phone::all();
 
-        $info = Cache::remember('general_info', 60, function () {
-            return GeneralInfo::first();
-        });
+        $info = GeneralInfo::first();
 
         View::composer('partials.sidebar', function ($view) use ($phones, $info) {
+            $view->with('phones', $phones);
+            $view->with('info', $info);
+        });
+
+        View::composer('partials.banner', function ($view) use ($phones, $info) {
             $view->with('phones', $phones);
             $view->with('info', $info);
         });

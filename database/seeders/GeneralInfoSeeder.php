@@ -36,6 +36,12 @@ class GeneralInfoSeeder extends Seeder
                 'vk' => 'https://vk.com/mpl12',
                 'telegram_channel' => 'https://t.me/mpl_12',
                 'telegram_group' => 'https://t.me/mpl_12',
+                'banner_title' => 'Психологическое консультирование онлайн',
+                'banner_subtitle' => 'Базовый курс обучения',
+                'banner_btn_text' => 'Оставить заявку',
+                'banner_image' => collect(glob(storage_path('app/public/banner/*.*')))
+                ->map(fn($path) => 'banner/' . basename($path))
+                ->random(),
                 'format' => [
                     '1 вечер очно',
                     '1 встреча раз в месяц, очно',

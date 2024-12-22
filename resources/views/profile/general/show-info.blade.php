@@ -8,7 +8,7 @@
 
     <div class="mt-4 space-y-6">
 
-        <form action="{{ route('general.update') }}" method="POST">
+        <form action="{{ route('general.update') }}" method="POST" enctype="multipart/form-data">
             @csrf
             @method('PUT')
 
@@ -66,6 +66,22 @@
                 <x-form-field name="telegram_group" label="Telegram канал" :value="$info->telegram_group" />
             </div>
 
+            <div class="mb-3">
+                <x-form-field name="banner_title" label="Заголовок баннера" :value="$info->banner_title" />
+            </div>
+
+            <div class="mb-3">
+                <x-form-field name="banner_subtitle" label="Подзаголовок баннера" :value="$info->banner_subtitle" />
+            </div>
+
+            <div class="mb-3">
+                <x-form-field name="banner_btn_text" label="Текст на кнопке баннера" :value="$info->banner_btn_text" />
+            </div>
+
+            <div class="mb-6">
+                <x-user.image-upload label="Фото баннера" :image-path="$info->banner_image" alt-text="Фото баннера"
+                new-label="(горизонтальное фото соотношением 4 : 1)" input-id="banner_image" input-name="banner_image" />
+            </div>
 
             <div class="mb-6">
                 <x-user.array-field field-name="format" label="Форматы курсов" singular-label="Формат курсов"
