@@ -45,7 +45,7 @@
                     <div>
                         <div class="p-8 space-y-2 text-gray-500">
                             @isset($course->supervisingTeacher)
-                                <h3 class="font-bold text-black text-md">Для записи свяжитесь с куратором:</h3>
+                                <h3 class="font-bold text-black text-md">КОНТАКТЫ ДЛЯ ЗАПИСИ:</h3>
                                 <a href="mailto:{{ $course->supervisingTeacher->email }}"
                                     class="text-brand-orange">{{ $course->supervisingTeacher->email }}</a>
                                 <p class="text-gray-500">{{ $course->supervisingTeacher->phone }} </p>
