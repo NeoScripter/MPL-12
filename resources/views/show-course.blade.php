@@ -62,7 +62,9 @@
                             {!! $course->content !!}
                         </div>
                     </div>
-                    <div class="px-8 md:mt-4 lg:mr-16 xl:mr-32">
+                    <div class="max-w-[35%] px-8 md:mt-4 lg:mr-16 xl:mr-32">
+                        @if ($course->schedules->isNotEmpty())
+
                         <h3 class="my-2 text-lg font-bold text-black">Расписание</h3>
                         <div class="grid">
                             @foreach ($course->schedules as $schedule)
@@ -71,6 +73,7 @@
                                 </div>
                             @endforeach
                         </div>
+                        @endif
 
                         <hr class="my-8">
 
@@ -80,7 +83,8 @@
 
                         <hr class="my-4">
 
-                        <x-user.webform :recipient_email="$course->supervisingTeacher->email ?? 'admin@bespokewebsites.ru'" />
+
+                            <x-user.webform :recipient_email="$course->supervisingTeacher->email ?? 'admin@bespokewebsites.ru'" />
 
                     </div>
                 </div>

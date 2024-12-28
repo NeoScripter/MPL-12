@@ -11,7 +11,7 @@ class ScheduleController extends Controller
     public function store(Request $request, $courseId)
     {
         $validated = $request->validate([
-            'schedule' => 'required|string|max:255',
+            'schedule' => 'required|string|max:2000',
         ]);
 
         $course = Course::findOrFail($courseId);
