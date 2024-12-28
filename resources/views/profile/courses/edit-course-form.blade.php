@@ -109,7 +109,8 @@
         </div>
         <div class="mt-6 space-y-4">
             <hr>
-            <div class="space-y-4">
+            <form id="add-schedule-form" action="{{ route('schedules.store', $course->id) }}" method="POST" class="space-y-4">
+                @csrf
                 <div>
                     <x-input-label for="schedule" :value="__('Добавить расписание')" />
                     <x-text-area id="schedule" name="schedule" type="text" class="block w-full mt-1 wysiwyg-editor"
@@ -120,15 +121,11 @@
                 <x-primary-button type="submit" form="add-schedule-form">
                     {{ __('Добавить') }}
                 </x-primary-button>
-            </div>
+            </form>
         </div>
 
 
     </section>
-
-    <form id="add-schedule-form" action="{{ route('schedules.store', $course->id) }}" method="POST">
-        @csrf
-    </form>
 
     <x-modal name="confirm-course-deletion" :show="$errors->userDeletion->isNotEmpty()" focusable>
         <form method="post" action="{{ route('dashboard.destroy', $course) }}" class="p-6">

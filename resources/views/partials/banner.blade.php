@@ -1,15 +1,12 @@
 
 <div x-data="{ showModal: {{ session('status') === 'error' ? 'true' : 'false' }} }" x-cloak
     class="relative w-full px-16 pt-24 bg-center bg-no-repeat bg-cover min-h-96" style="background-image: url('{{ Storage::url($info->banner_image) }}')">
-    <h1 class="mb-1 text-2xl font-medium bg-white sm:text-4xl shadow-white-large max-w-max">Психологическое
-        консультирование
-        онлайн</h1>
-    <h2 class="mb-4 text-base font-medium bg-white sm:text-2xl md:mb-12 shadow-white-large max-w-max">Базовый
-        курс обучения
+    <h1 class="mb-1 text-2xl font-medium bg-white sm:text-4xl shadow-white-large max-w-max">{{ $info->banner_title ?? '' }}</h1>
+    <h2 class="mb-4 text-base font-medium bg-white sm:text-2xl md:mb-12 shadow-white-large max-w-max">{{ $info->banner_subtitle ?? '' }}
     </h2>
     <button @click="showModal = true"
         class="block px-4 py-2 font-normal text-white transition-colors border bg-brand-orange w-max hover:bg-white hover:text-brand-orange border-brand-orange">
-        Оставить заявку
+        {{ $info->banner_btn_text ?? '' }}
     </button>
 
     <div x-show="showModal" x-transition tabindex="-1"

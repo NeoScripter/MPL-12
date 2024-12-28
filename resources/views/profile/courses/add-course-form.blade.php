@@ -13,27 +13,27 @@
     <form method="POST" action="{{ route('course.create') }}" enctype="multipart/form-data" class="mt-4 space-y-4 create-course-form">
         @csrf
 
-        <x-form-field name="title" label="Название курса" />
+        <x-form-field name="title" label="Название курса" :value="old('title')" />
 
         <x-select-field name="category" label="Категория курса" :options="['Для специалистов и студентов', 'Тренинги', 'Подросткам и родителям']" placeholder="Категория курса" />
 
         <x-select-field name="format" label="Формат курса" :options="$courseFormats ?? []" placeholder="Формат курса" />
 
-        <x-form-field class="w-60" name="date" type="date" label="Дата начала курса" />
+        <x-form-field class="w-60" name="date" type="date" label="Дата начала курса" :value="old('date')" />
 
-        <x-form-field class="w-60" name="time" label="Время начала курса" />
+        <x-form-field class="w-60" name="time" label="Время начала курса" :value="old('time')" />
 
-        <x-form-field name="description" label="Описание курса" :is-textarea="true" />
+        <x-form-field name="description" label="Описание курса" :is-textarea="true" :value="old('description')" />
 
-        <x-form-field name="content" label="Подробное содержание курса" :is-textarea="true" />
+        <x-form-field name="content" label="Подробное содержание курса" :is-textarea="true" :value="old('content')" />
 
-        <x-form-field name="price" label="Цена курса" :is-textarea="true" />
+        <x-form-field name="price" label="Цена курса" :is-textarea="true" :value="old('price')" />
 
-        <x-form-field name="reviews" label="Отзывы курса" :is-textarea="true" />
+        <x-form-field name="reviews" label="Отзывы курса" :is-textarea="true" :value="old('reviews')" />
 
         <div>
             <p class="block mb-1 text-sm font-medium text-gray-700">Фото курса</p>
-            <p class="block mb-1 text-sm font-medium text-gray-700">(горизонтальное фото соотношением 2 : 1)</p>
+            <p class="block mb-1 text-sm font-medium text-gray-700">(горизонтальное фото соотношением 3 : 1)</p>
             <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="image">Новое
                 фото</label>
             <input
