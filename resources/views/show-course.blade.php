@@ -57,12 +57,6 @@
                                 </div>
                                 <h3 class="font-bold text-black text-md">{{ $course->supervisingTeacher->name }}</h3>
                             @endisset
-                            <h3 class="font-bold text-black text-md">Узнать подробности об онлайн-обучении в МПЛ12:</h3>
-                            <a href="https://online.mpl12.institute/"
-                                class="text-brand-orange">https://online.mpl12.institute/</a>
-                            <h3 class="font-bold text-black text-md">Особенности нашего подхода к обучению:</h3>
-                            <a href="http://mpl12.ru/obuchenie/osobennosti-nashego-podhoda-k-obucheniyu/"
-                                class="text-brand-orange">http://mpl12.ru/obuchenie/osobennosti-nashego-podhoda-k-obucheniyu/</a>
                         </div>
                         <div class="px-8 space-y-2 html-content">
                             {!! $course->content !!}
