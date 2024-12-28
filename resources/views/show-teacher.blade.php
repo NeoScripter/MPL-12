@@ -20,7 +20,7 @@
                         <div class="space-y-1 prosehtml-content max-w-none">
                             {!! $teacher->quote !!}
                         </div>
-                        @isset ($teacher->secondary_image_path)
+                        @isset($teacher->secondary_image_path)
                             <div class="w-full my-4 overflow-hidden 2sm:m-4 2sm:float-right 2sm:w-52 lg:w-60">
                                 <img class="object-cover object-center w-full h-full"
                                     src="{{ Storage::url($teacher->secondary_image_path) }}" alt="{{ $teacher->name }}">
@@ -30,37 +30,42 @@
                             {!! $teacher->education !!}
                         </div>
                     </div>
-                    <div class="my-2 basis-1/3">
-                        <h3 class="pl-2 mb-6 text-2xl font-medium">Обучение и мероприятия</h3>
-                        @if ($teachersCourses)
-                            <ul>
-                                @foreach ($teachersCourses as $id => $title)
+                    @isset($teachersCourses)
+                        @if (!empty($teachersCourses))
+                            <div class="my-2 basis-1/3">
+                                <h3 class="pl-2 mb-6 text-2xl font-medium">Обучение и мероприятия</h3>
+                                <ul>
+                                    @foreach ($teachersCourses as $id => $title)
+                                        <li>
+                                            <a class="text-lg font-medium transition-opacity hover:opacity-70"
+                                                href="{{ route('dashboard.show', $id) }}">
+                                                {{ $title }}
+                                            </a>
+                                        </li>
+                                        <hr class="my-1">
+                                    @endforeach
+                                </ul>
+                            </div>
+                        @endif
+                    @endisset
+                </div>
+
+                @isset($teacher->articles)
+                    @if ($teacher->articles->isNotEmpty())
+                        <div class="my-4 md:w-3/4">
+                            <h2 class="my-4 text-2xl font-medium text-center md:my-6 md:text-3xl">Статьи</h2>
+
+                            <ul class="space-y-2">
+                                @foreach ($teacher->articles as $article)
                                     <li>
-                                        <a class="text-lg font-medium transition-opacity hover:opacity-70"
-                                            href="{{ route('dashboard.show', $id) }}">
-                                            {{ $title }}
-                                        </a>
+                                        <a class="text-base font-normal md:text-lg text-brand-orange hover:underline"
+                                            href="{{ $article->link }}">{{ $article->title }}</a>
                                     </li>
-                                    <hr class="my-1">
                                 @endforeach
                             </ul>
-                        @endif
-                    </div>
-                </div>
-                <div class="my-4 md:w-3/4">
-                    <h2 class="my-4 text-2xl font-medium text-center md:my-6 md:text-3xl">Статьи</h2>
-
-                    @if ($teacher->articles)
-                        <ul class="space-y-2">
-                            @foreach ($teacher->articles as $article)
-                                <li>
-                                    <a class="text-base font-normal md:text-lg text-brand-orange hover:underline"
-                                        href="{{ $article->link }}">{{ $article->title }}</a>
-                                </li>
-                            @endforeach
-                        </ul>
+                        </div>
                     @endif
-                </div>
+                @endisset
             </div>
         @endif
 
