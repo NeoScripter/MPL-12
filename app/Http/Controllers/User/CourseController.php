@@ -84,7 +84,7 @@ class CourseController extends Controller
     {
         $validated = $request->validate([
             'title' => 'required|string|max:255',
-            'format' => 'required|string|max:255',
+            'format' => 'nullable|string|max:255',
             'category' => 'nullable|string',
             'date' => 'required|string',
             'time' => 'required|string|date_format:H:i',
@@ -139,7 +139,7 @@ class CourseController extends Controller
         $validated = $request->validate([
             'title' => 'required|string|max:255',
             'category' => 'nullable|string',
-            'format' => 'required|string|max:255',
+            'format' => 'nullable|string|max:255',
             'date' => 'required|string',
             'time' => 'required|string|date_format:H:i',
             'description' => 'nullable|string',

@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('image_path')->nullable();
             $table->date('start_date');
             $table->string('start_time');
-            $table->string('format');
+            $table->string('format')->nullable();
             $table->string('category')->nullable();
             $table->text('content')->nullable();
             $table->text('description')->nullable();
