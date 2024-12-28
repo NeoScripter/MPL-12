@@ -19,12 +19,12 @@ class ContactController extends Controller
             'privacy_policy' => 'accepted',
             'recipient_email' => 'nullable|email',
         ]);
-    
+
         // Collect form data for the email
         $emailData = $request->only('first_name', 'last_name', 'phone', 'email');
-    
+
         // Determine recipient email with a fallback to a default
-        $recipientEmail = $validated['recipient_email'] ?? 'default@example.com';
+        $recipientEmail = $validated['recipient_email'] ?? 'admin@mospsylab.ru';
 
         try {
             Mail::to($recipientEmail)->send(new ContactMail($emailData));
@@ -32,7 +32,6 @@ class ContactController extends Controller
             // Set session status to 'success'
             return redirect()->back()->with([
                 'status' => 'success',
-                'message' => 'Ваше сообщение успешно отправлено!',
             ]);
         } catch (\Exception $e) {
             // Handle any errors during email sending

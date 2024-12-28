@@ -28,7 +28,19 @@
                     $menuNames = json_decode($info->menu_names, true);
 
                     $routes = [
-                        'event-schedule', 'basiccourse', 'basicoffline', 'softskills', 'specialists', 'training', 'index', 'supervisions', 'videolessons', 'consultants', 'graduates', 'vids', 'contacts'
+                        'event-schedule',
+                        'basiccourse',
+                        'basicoffline',
+                        'softskills',
+                        'specialists',
+                        'training',
+                        'index',
+                        'supervisions',
+                        'videolessons',
+                        'consultants',
+                        'graduates',
+                        'vids',
+                        'contacts',
                     ];
                 @endphp
 
@@ -40,7 +52,8 @@
                         if (!$info->show_schedule && $routes[$index] === 'event-schedule') {
                             continue;
                         }
-                        $new_page = $routes[$index] === 'basiccourse' || $routes[$index] === 'softskills' ? true : false;
+                        $new_page =
+                            $routes[$index] === 'basiccourse' || $routes[$index] === 'softskills' ? true : false;
                         $route = $routes[$index] ?? 'dummy';
                     @endphp
 
@@ -86,16 +99,14 @@
     </sidebar>
 
     @if (session('status') === 'success')
-    <div
-        class="fixed flex items-center p-4 space-x-4 text-gray-500 -translate-x-1/2 bg-white divide-x divide-gray-200 rounded-lg shadow w-max left-1/2 rtl:divide-x-reverse top-5 dark:text-gray-400 dark:divide-gray-700 dark:bg-gray-800"
-        role="alert"
-        x-data="{ show: true }"
-             x-show="show"
-             x-transition
-             x-init="setTimeout(() => show = false, 2000)">
-        <div class="text-base font-normal text-center text-gray-600">
-            {{ session('message') }}
+        <div class="fixed z-30 flex items-center max-w-full p-4 space-x-4 text-gray-500 -translate-x-1/2 bg-white divide-x divide-gray-200 rounded-lg shadow w-80 left-1/2 rtl:divide-x-reverse top-5 dark:text-gray-400 dark:divide-gray-700 dark:bg-gray-800"
+            role="alert" x-data="{ show: true }" x-show="show" x-transition x-init="setTimeout(() => show = false, 4000)">
+            <div class="space-y-3 text-lg font-normal text-gray-800 text-balance">
+                <p>Ваша заявка принята. Ожидайте письмо с информация по курсу на указанную почту.</p>
+                <p>p.s. При записи менее. чем за 24 часа до начала, не можем гарантировать, что успеем обработать вашу
+                    заявку, пожалуйста, свяжитесь с куратором направления.</p>
+                <p>p.p.s. Рекомендуем проверить папки СПАМ и РАССЫЛКИ, если письма не будет во входящих</p>
+            </div>
         </div>
-    </div>
-@endif
+    @endif
 </div>
