@@ -13,7 +13,8 @@
         class="fixed top-0 left-0 right-0 z-50 flex items-center justify-center w-full h-full max-h-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 bg-black/50">
         <div class="relative w-full max-w-md max-h-full">
             <!-- Modal content -->
-            <div class="relative p-8 bg-white rounded-lg shadow dark:bg-gray-700">
+            <div class="relative p-8 bg-white rounded-lg shadow dark:bg-gray-700"
+            @click.away="showModal = false">
                 <!-- Modal header -->
                 <div
                     class="flex items-center justify-between py-4 mb-3 border-b rounded-t md:py-5 dark:border-gray-600">
