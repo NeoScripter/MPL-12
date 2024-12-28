@@ -87,7 +87,6 @@
             </div>
 
             <div class="xl:max-w-6xl ">
-                <h3 class="my-4 font-bold text-center text-black text-md">Отзывы о курсе</h3>
                 <div class="px-8 space-y-2 html-content">
                     {!! $course->reviews !!}
                 </div>
